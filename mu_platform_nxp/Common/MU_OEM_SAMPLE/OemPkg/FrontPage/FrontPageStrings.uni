@@ -1,0 +1,80 @@
+// *++
+//
+//  Strings for FrontPage
+//
+//  Copyright (c) 2015 - 2018, Microsoft Corporation.
+//  
+//  All rights reserved.
+//  Redistribution and use in source and binary forms, with or without 
+//  modification, are permitted provided that the following conditions are met:
+//  1. Redistributions of source code must retain the above copyright notice,
+//  this list of conditions and the following disclaimer.
+//  2. Redistributions in binary form must reproduce the above copyright notice,
+//  this list of conditions and the following disclaimer in the documentation
+//  and/or other materials provided with the distribution.
+//
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+//  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+//  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+//  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+//  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+//  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+//  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+//  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+//  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+//  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//
+// --*/
+
+#langdef   en-US " English "
+
+#langdef   en    " Standard English "
+
+#string STR_FRONT_PAGE_TITLE      #language en-US  "Project MU"
+
+////////////////////////////////////////////////////////////////////////////////////
+// Master Frame Menu Strings
+//
+#string STR_MF_MENU_OP_PCINFO     #language en-US    "PC information"
+
+#string STR_MF_MENU_OP_BOOTORDER  #language en-US    "Boot configuration"
+
+#string STR_MF_MENU_OP_EXIT       #language en-US    "Exit"
+
+////////////////////////////////////////////////////////////////////////////////////
+// Generic Strings
+//
+#string STR_NULL_STRING             #language en-US  ""
+
+/////////////////////////////////////////////////////////////////////////////
+// Form ID 0: PC Information
+//
+#string STR_INF_VIEW_PCINFO_HEADER        #language en-US  "\fh!48!PC information"
+
+#string STR_INF_VIEW_PC_MODEL             #language en-US  "Model"
+
+#string STR_INF_VIEW_PC_MODEL_VALUE       #language en-US  "None"
+
+#string STR_INF_VIEW_PC_UUID              #language en-US  "System UUID"
+
+#string STR_INF_VIEW_PC_UUID_VALUE        #language en-US  "None"
+
+#string STR_INF_VIEW_PC_SERIALNUM         #language en-US  "Serial number"
+
+#string STR_INF_VIEW_PC_SERIALNUM_VALUE   #language en-US  "None"
+
+#string STR_INF_VIEW_PC_ASSET_TAG         #language en-US  "Asset tag"
+
+#string STR_INF_VIEW_PC_ASSET_TAG_VALUE   #language en-US  "None"
+
+#string STR_INF_VIEW_FIRMWARE_HEADER      #language en-US  "\fh!48!Firmware"
+
+/////////////////////////////////////////////////////////////////////////////
+// Form ID 1: Exit
+//
+#string STR_FP_EXIT_HEADER          #language en-US  "\fh!48!Exit settings and restart your platform"
+
+#string STR_FP_EXIT_DESCRIPTION     #language en-US  "\fh!28!All changes to the settings on this PC have been saved. Restart your PC to exit settings."
+
+#string STR_FP_RESTART_NOW_BUTTON   #language en-US  "Restart now"

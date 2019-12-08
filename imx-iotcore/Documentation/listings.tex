@@ -1,0 +1,49 @@
+% Contents of listings-setup.tex
+\usepackage{xcolor}
+\definecolor{bluelight}{HTML}{cbe1f1}
+\definecolor{bluedark}{HTML}{003588}
+\definecolor{nxpblue}{HTML}{7BB1DB}
+\definecolor{white}{rgb}{1.0, 1.0, 1.0}
+\definecolor{keyword-1}{cmyk}{1.00, 0.44, 0.00, 0.28}
+\definecolor{Maroon}{cmyk}{0, 0.87, 0.68, 0.32}
+
+\definecolor{Green}{cmyk}{0.63, 0.00, 0.76, 0.47}
+\definecolor{gray}{HTML}{7c7272}
+
+\usepackage{listings}
+\newcommand{\passthrough}[1]{#1}
+
+\lstset{
+% Line breaks
+  breaklines        = true,
+  breakatwhitespace = true,
+  breakautoindent   = true,
+  linewidth         = \textwidth,
+  %  postbreak         = \raisebox{0ex}[0ex][0ex]{\ensuremath{\color{Maroon}\hookrightarrow\space}},
+  literate          = {/}{}{0\discretionary{/}{}{/}} {\\}{}{0\discretionary{\textbackslash}{}{\textbackslash}},
+% Frame and line numbers
+  %  frame             = single,
+  framesep          = 1 mm,
+  numberstyle       = \color{nxpblue}\tiny,
+  numbersep         = 10 pt,
+  numbers           = left,
+% Coloring and syntax
+  backgroundcolor   = \color{white},
+  basicstyle        = \color{bluedark}\linespread{1.0}\footnotesize\ttfamily{},
+  keywordstyle      = {\color{keyword-1}\bfseries},
+  keywordstyle      = {[2]\color{Maroon}\bfseries\itshape},
+  keywordstyle      = {[3]\bfseries},
+  stringstyle       = \color{Green},
+  commentstyle      = \color{gray}\itshape,
+  escapeinside      = {\%*}{*)},
+  tabsize           = 4,
+  showspaces        = false,
+  showstringspaces  = false,
+  showtabs          = false,
+% Spacing and dimensions
+  basewidth         = 0.5em,
+  aboveskip         = 1.0em,
+  belowskip         = 0.1em,
+  abovecaptionskip  = 0em,
+  belowcaptionskip  = 1.0em
+}

@@ -1,0 +1,8 @@
+{
+  "scope": "global",
+  "type": "nuget",
+  "name": "Mu-SharedCrypto",
+  "source": "https://api.nuget.org/v3/index.json",
+  "version": "2019.03.04.01",
+  "flags": []
+}

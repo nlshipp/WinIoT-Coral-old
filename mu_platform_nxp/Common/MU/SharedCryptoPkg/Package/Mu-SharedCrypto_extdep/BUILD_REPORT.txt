@@ -1,0 +1,960 @@
+Platform Summary
+Platform Name:        SharedCryptoDrivers
+Platform DSC Path:    c:\git\mu_plus\SharedCryptoPkg\SharedCryptoPkgDriver.dsc
+Architectures:        IA32 X64 AARCH64
+Tool Chain:           VSLATESTx86
+Target:               RELEASE
+SKUID:                DEFAULT
+DefaultStore:         STANDARD
+Output Path:          c:\git\mu_plus\Build\SharedCryptoPkg_Driver
+Build Environment:    Windows-10-10.0.18362-SP0
+Build Duration:       00:00:50
+AutoGen Duration:     00:00:24
+Make Duration:        00:00:26
+Report Content:       PCD, DEPEX, LIBRARY, BUILD_FLAGS
+>======================================================================================================================<
+Platform Configuration Database Report
+  *B  - PCD override in the build option
+  *P  - Platform scoped PCD override in DSC file
+  *F  - Platform scoped PCD override in FDF file
+  *M  - Module scoped PCD override
+========================================================================================================================
+
+gEfiMdePkgTokenSpaceGuid
+    PcdControlFlowEnforcementPropertyMask   :  FIXED   (UINT32) = 0x0 (0)
+    PcdDebugClearMemoryValue             :  FIXED    (UINT8) = 0xAF (175)
+    PcdDebugPrintErrorLevel              :  FIXED   (UINT32) = 0x80000000 (2147483648)
+    PcdDebugPropertyMask                 :  FIXED    (UINT8) = 0x0 (0)
+    PcdFixedDebugPrintErrorLevel         :  FIXED   (UINT32) = 0xFFFFFFFF (4294967295)
+    PcdMaximumAsciiStringLength          :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumLinkedListLength           :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumUnicodeStringLength        :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdReportStatusCodePropertyMask      :  FIXED    (UINT8) = 0x0 (0)
+    PcdVerifyNodeInList                  :   FLAG  (BOOLEAN) = 0
+<======================================================================================================================>
+
+>======================================================================================================================<
+Module Summary
+Module Name:          SharedCryptoPeiShaOnly
+Module Arch:          IA32
+Module INF Path:      SharedCryptoPkg\Driver\SharedCryptoPeiShaOnly.inf
+File GUID:            0D1CE46B-72D9-4BA7-95DA-23511865E661
+Size:                 0x1340 (4.81K)
+Build Time Stamp:     1970-01-01 00:00:00
+Module Build Time:    2605ms
+Driver Type:          0x6 (PEIM)
+========================================================================================================================
+>----------------------------------------------------------------------------------------------------------------------<
+PCD
+------------------------------------------------------------------------------------------------------------------------
+gEfiMdePkgTokenSpaceGuid
+    PcdControlFlowEnforcementPropertyMask   :  FIXED   (UINT32) = 0x0 (0)
+    PcdDebugClearMemoryValue             :  FIXED    (UINT8) = 0xAF (175)
+    PcdDebugPrintErrorLevel              :  FIXED   (UINT32) = 0x80000000 (2147483648)
+    PcdDebugPropertyMask                 :  FIXED    (UINT8) = 0x0 (0)
+    PcdFixedDebugPrintErrorLevel         :  FIXED   (UINT32) = 0xFFFFFFFF (4294967295)
+    PcdMaximumAsciiStringLength          :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumLinkedListLength           :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumUnicodeStringLength        :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdVerifyNodeInList                  :   FLAG  (BOOLEAN) = 0
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Library
+------------------------------------------------------------------------------------------------------------------------
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseDebugPrintErrorLevelLib\BaseDebugPrintErrorLevelLib.inf
+{DebugPrintErrorLevelLib:  Time = 159ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseReportStatusCodeLibNull\BaseReportStatusCodeLibNull.inf
+{ReportStatusCodeLib:  Time = 153ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiHobLib\PeiHobLib.inf
+{HobLib:  Time = 190ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiMemoryAllocationLib\PeiMemoryAllocationLib.inf
+{MemoryAllocationLib:  Time = 211ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiServicesTablePointerLibIdt\PeiServicesTablePointerLibIdt.inf
+{PeiServicesTablePointerLib:  Time = 235ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiPcdLib\PeiPcdLib.inf
+{PcdLib:  Depex = gEfiPeiPcdPpiGuid  Time = 163ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseLib\BaseLib.inf
+{BaseLib:  Time = 620ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseMemoryLibOptPei\BaseMemoryLibOptPei.inf
+{BaseMemoryLib:  Time = 297ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiServicesLib\PeiServicesLib.inf
+{PeiServicesLib:  Time = 211ms}
+c:\git\mu_plus\MsCorePkg\Library\PeiDebugLib\PeiDebugLib.inf
+{DebugLib:  Depex = gDebugPortPpiGuid  Time = 208ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\IntrinsicLib\IntrinsicLib.inf
+{IntrinsicLib:  Time = 210ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\OpensslLib\OpensslLib.inf
+{OpensslLib:  Time = 3667ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseRngLib\BaseRngLib.inf
+{RngLib:  C = BaseRngLibConstructor Time = 227ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeimEntryPoint\PeimEntryPoint.inf
+{PeimEntryPoint:  Time = 233ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\BaseCryptLib\PeiCryptLib.inf
+{BaseCryptLib:  Time = 320ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\VsIntrinsicLib\VsIntrinsicLib.inf
+{NULL:  Time = 131ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseBinSecurityLibRng\BaseBinSecurityLibRng.inf
+{BaseBinSecurityLib:  Time = 141ms}
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Final Dependency Expression (DEPEX) Instructions
+  PUSH gEfiPeiPcdPpiGuid
+  PUSH gDebugPortPpiGuid
+  AND
+  END
+------------------------------------------------------------------------------------------------------------------------
+Dependency Expression (DEPEX) from INF
+(TRUE) AND (gEfiPeiPcdPpiGuid) AND (gDebugPortPpiGuid)
+------------------------------------------------------------------------------------------------------------------------
+From Module INF:  TRUE
+From Library INF: (gEfiPeiPcdPpiGuid) AND (gDebugPortPpiGuid)
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Build Flags
+Tool Chain Tag: VSLATESTx86
+------------------------------------------------------------------------------------------------------------------------
+CC_FLAGS =  /nologo /arch:IA32 /c /WX /GS- /W4 /Gs32768 /D UNICODE /O1ib2 /GL /FIAutoGen.h /EHs-c- /GR- /GF /Gw
+------------------------------------------------------------------------------------------------------------------------
+SLINK_FLAGS =  /NOLOGO /LTCG
+------------------------------------------------------------------------------------------------------------------------
+DLINK_FLAGS =  /NOLOGO /NODEFAULTLIB /IGNORE:4001 /IGNORE:4254 /OPT:REF /OPT:ICF=10 /MAP /ALIGN:32 /SECTION:.xdata,D
+/SECTION:.pdata,D /MACHINE:X86 /LTCG /DLL /ENTRY:$(IMAGE_ENTRY_POINT) /SUBSYSTEM:EFI_BOOT_SERVICE_DRIVER /SAFESEH:NO
+/BASE:0 /DRIVER /MERGE:.rdata=.data
+<---------------------------------------------------------------------------------------------------------------------->
+<======================================================================================================================>
+
+>======================================================================================================================<
+Module Summary
+Module Name:          SharedCryptoDxe
+Module Arch:          IA32
+Module INF Path:      SharedCryptoPkg\Driver\SharedCryptoDxe.inf
+File GUID:            FEA01457-E381-4135-9475-C6AFD0076C61
+Size:                 0x55CE0 (343.22K)
+Build Time Stamp:     1970-01-01 00:00:00
+Module Build Time:    10697ms
+Driver Type:          0x7 (DRIVER)
+PI Spec Version:      0x0001000A
+========================================================================================================================
+>----------------------------------------------------------------------------------------------------------------------<
+PCD
+------------------------------------------------------------------------------------------------------------------------
+gEfiMdePkgTokenSpaceGuid
+    PcdControlFlowEnforcementPropertyMask   :  FIXED   (UINT32) = 0x0 (0)
+    PcdMaximumAsciiStringLength          :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumLinkedListLength           :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumUnicodeStringLength        :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdVerifyNodeInList                  :   FLAG  (BOOLEAN) = 0
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Library
+------------------------------------------------------------------------------------------------------------------------
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePcdLibNull\BasePcdLibNull.inf
+{PcdLib:  Time = 132ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseLib\BaseLib.inf
+{BaseLib:  Time = 620ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull.inf
+{DebugLib:  Time = 145ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseMemoryLib\BaseMemoryLib.inf
+{BaseMemoryLib:  Time = 162ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib.inf
+{UefiBootServicesTableLib:  C = UefiBootServicesTableLibConstructor Time = 139ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePrintLib\BasePrintLib.inf
+{PrintLib:  Time = 158ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\IntrinsicLib\IntrinsicLib.inf
+{IntrinsicLib:  Time = 210ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\OpensslLib\OpensslLib.inf
+{OpensslLib:  Time = 3667ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiRuntimeServicesTableLib\UefiRuntimeServicesTableLib.inf
+{UefiRuntimeServicesTableLib:  C = UefiRuntimeServicesTableLibConstructor Time = 233ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib.inf
+{MemoryAllocationLib:  Time = 158ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseRngLib\BaseRngLib.inf
+{RngLib:  C = BaseRngLibConstructor Time = 227ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\BaseCryptLib\BaseCryptLib.inf
+{BaseCryptLib:  Time = 315ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiDriverEntryPoint\UefiDriverEntryPoint.inf
+{UefiDriverEntryPoint:  Time = 136ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\VsIntrinsicLib\VsIntrinsicLib.inf
+{NULL:  Time = 131ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseBinSecurityLibRng\BaseBinSecurityLibRng.inf
+{BaseBinSecurityLib:  Time = 141ms}
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Final Dependency Expression (DEPEX) Instructions
+  TRUE
+  END
+------------------------------------------------------------------------------------------------------------------------
+Dependency Expression (DEPEX) from INF
+(TRUE)
+------------------------------------------------------------------------------------------------------------------------
+From Module INF:  TRUE
+From Library INF: (None)
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Build Flags
+Tool Chain Tag: VSLATESTx86
+------------------------------------------------------------------------------------------------------------------------
+CC_FLAGS =  /nologo /arch:IA32 /c /WX /GS- /W4 /Gs32768 /D UNICODE /O1ib2 /GL /FIAutoGen.h /EHs-c- /GR- /GF /Gw
+------------------------------------------------------------------------------------------------------------------------
+SLINK_FLAGS =  /NOLOGO /LTCG
+------------------------------------------------------------------------------------------------------------------------
+DLINK_FLAGS =  /NOLOGO /NODEFAULTLIB /IGNORE:4001 /IGNORE:4254 /OPT:REF /OPT:ICF=10 /MAP /ALIGN:32 /SECTION:.xdata,D
+/SECTION:.pdata,D /MACHINE:X86 /LTCG /DLL /ENTRY:$(IMAGE_ENTRY_POINT) /SUBSYSTEM:EFI_BOOT_SERVICE_DRIVER /SAFESEH:NO
+/BASE:0 /DRIVER /MERGE:.rdata=.data
+<---------------------------------------------------------------------------------------------------------------------->
+<======================================================================================================================>
+
+>======================================================================================================================<
+Module Summary
+Module Name:          SharedCryptoDxeMu
+Module Arch:          IA32
+Module INF Path:      SharedCryptoPkg\Driver\SharedCryptoDxeMu.inf
+File GUID:            BECD81FD-AC56-4308-BEFC-957EA17384D2
+Size:                 0x49280 (292.62K)
+Build Time Stamp:     1970-01-01 00:00:00
+Module Build Time:    10211ms
+Driver Type:          0x7 (DRIVER)
+PI Spec Version:      0x0001000A
+========================================================================================================================
+>----------------------------------------------------------------------------------------------------------------------<
+PCD
+------------------------------------------------------------------------------------------------------------------------
+gEfiMdePkgTokenSpaceGuid
+    PcdControlFlowEnforcementPropertyMask   :  FIXED   (UINT32) = 0x0 (0)
+    PcdMaximumAsciiStringLength          :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumLinkedListLength           :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumUnicodeStringLength        :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdVerifyNodeInList                  :   FLAG  (BOOLEAN) = 0
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Library
+------------------------------------------------------------------------------------------------------------------------
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePcdLibNull\BasePcdLibNull.inf
+{PcdLib:  Time = 132ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseLib\BaseLib.inf
+{BaseLib:  Time = 620ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull.inf
+{DebugLib:  Time = 145ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseMemoryLib\BaseMemoryLib.inf
+{BaseMemoryLib:  Time = 162ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib.inf
+{UefiBootServicesTableLib:  C = UefiBootServicesTableLibConstructor Time = 139ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePrintLib\BasePrintLib.inf
+{PrintLib:  Time = 158ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\IntrinsicLib\IntrinsicLib.inf
+{IntrinsicLib:  Time = 210ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\OpensslLib\OpensslLib.inf
+{OpensslLib:  Time = 3667ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiRuntimeServicesTableLib\UefiRuntimeServicesTableLib.inf
+{UefiRuntimeServicesTableLib:  C = UefiRuntimeServicesTableLibConstructor Time = 233ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib.inf
+{MemoryAllocationLib:  Time = 158ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseRngLib\BaseRngLib.inf
+{RngLib:  C = BaseRngLibConstructor Time = 227ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\BaseCryptLib\BaseCryptLib.inf
+{BaseCryptLib:  Time = 315ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiDriverEntryPoint\UefiDriverEntryPoint.inf
+{UefiDriverEntryPoint:  Time = 136ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\VsIntrinsicLib\VsIntrinsicLib.inf
+{NULL:  Time = 131ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseBinSecurityLibRng\BaseBinSecurityLibRng.inf
+{BaseBinSecurityLib:  Time = 141ms}
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Final Dependency Expression (DEPEX) Instructions
+  TRUE
+  END
+------------------------------------------------------------------------------------------------------------------------
+Dependency Expression (DEPEX) from INF
+(TRUE)
+------------------------------------------------------------------------------------------------------------------------
+From Module INF:  TRUE
+From Library INF: (None)
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Build Flags
+Tool Chain Tag: VSLATESTx86
+------------------------------------------------------------------------------------------------------------------------
+CC_FLAGS =  /nologo /arch:IA32 /c /WX /GS- /W4 /Gs32768 /D UNICODE /O1ib2 /GL /FIAutoGen.h /EHs-c- /GR- /GF /Gw
+------------------------------------------------------------------------------------------------------------------------
+SLINK_FLAGS =  /NOLOGO /LTCG
+------------------------------------------------------------------------------------------------------------------------
+DLINK_FLAGS =  /NOLOGO /NODEFAULTLIB /IGNORE:4001 /IGNORE:4254 /OPT:REF /OPT:ICF=10 /MAP /ALIGN:32 /SECTION:.xdata,D
+/SECTION:.pdata,D /MACHINE:X86 /LTCG /DLL /ENTRY:$(IMAGE_ENTRY_POINT) /SUBSYSTEM:EFI_BOOT_SERVICE_DRIVER /SAFESEH:NO
+/BASE:0 /DRIVER /MERGE:.rdata=.data
+<---------------------------------------------------------------------------------------------------------------------->
+<======================================================================================================================>
+
+>======================================================================================================================<
+Module Summary
+Module Name:          SharedCryptoPeiShaOnly
+Module Arch:          X64
+Module INF Path:      SharedCryptoPkg\Driver\SharedCryptoPeiShaOnly.inf
+File GUID:            0D1CE46B-72D9-4BA7-95DA-23511865E661
+Size:                 0x2200 (8.50K)
+Build Time Stamp:     1970-01-01 00:00:00
+Module Build Time:    2323ms
+Driver Type:          0x6 (PEIM)
+========================================================================================================================
+>----------------------------------------------------------------------------------------------------------------------<
+PCD
+------------------------------------------------------------------------------------------------------------------------
+gEfiMdePkgTokenSpaceGuid
+    PcdControlFlowEnforcementPropertyMask   :  FIXED   (UINT32) = 0x0 (0)
+    PcdDebugClearMemoryValue             :  FIXED    (UINT8) = 0xAF (175)
+    PcdDebugPrintErrorLevel              :  FIXED   (UINT32) = 0x80000000 (2147483648)
+    PcdDebugPropertyMask                 :  FIXED    (UINT8) = 0x0 (0)
+    PcdFixedDebugPrintErrorLevel         :  FIXED   (UINT32) = 0xFFFFFFFF (4294967295)
+    PcdMaximumAsciiStringLength          :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumLinkedListLength           :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumUnicodeStringLength        :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdVerifyNodeInList                  :   FLAG  (BOOLEAN) = 0
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Library
+------------------------------------------------------------------------------------------------------------------------
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseDebugPrintErrorLevelLib\BaseDebugPrintErrorLevelLib.inf
+{DebugPrintErrorLevelLib:  Time = 104ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseReportStatusCodeLibNull\BaseReportStatusCodeLibNull.inf
+{ReportStatusCodeLib:  Time = 115ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiHobLib\PeiHobLib.inf
+{HobLib:  Time = 156ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiMemoryAllocationLib\PeiMemoryAllocationLib.inf
+{MemoryAllocationLib:  Time = 168ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiServicesTablePointerLibIdt\PeiServicesTablePointerLibIdt.inf
+{PeiServicesTablePointerLib:  Time = 154ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiPcdLib\PeiPcdLib.inf
+{PcdLib:  Depex = gEfiPeiPcdPpiGuid  Time = 168ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseLib\BaseLib.inf
+{BaseLib:  Time = 584ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseMemoryLibOptPei\BaseMemoryLibOptPei.inf
+{BaseMemoryLib:  Time = 221ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiServicesLib\PeiServicesLib.inf
+{PeiServicesLib:  Time = 115ms}
+c:\git\mu_plus\MsCorePkg\Library\PeiDebugLib\PeiDebugLib.inf
+{DebugLib:  Depex = gDebugPortPpiGuid  Time = 143ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\IntrinsicLib\IntrinsicLib.inf
+{IntrinsicLib:  Time = 160ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\OpensslLib\OpensslLib.inf
+{OpensslLib:  Time = 6614ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseRngLib\BaseRngLib.inf
+{RngLib:  C = BaseRngLibConstructor Time = 135ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeimEntryPoint\PeimEntryPoint.inf
+{PeimEntryPoint:  Time = 138ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\BaseCryptLib\PeiCryptLib.inf
+{BaseCryptLib:  Time = 248ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseBinSecurityLibRng\BaseBinSecurityLibRng.inf
+{BaseBinSecurityLib:  Time = 176ms}
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Final Dependency Expression (DEPEX) Instructions
+  PUSH gEfiPeiPcdPpiGuid
+  PUSH gDebugPortPpiGuid
+  AND
+  END
+------------------------------------------------------------------------------------------------------------------------
+Dependency Expression (DEPEX) from INF
+(TRUE) AND (gEfiPeiPcdPpiGuid) AND (gDebugPortPpiGuid)
+------------------------------------------------------------------------------------------------------------------------
+From Module INF:  TRUE
+From Library INF: (gEfiPeiPcdPpiGuid) AND (gDebugPortPpiGuid)
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Build Flags
+Tool Chain Tag: VSLATESTx86
+------------------------------------------------------------------------------------------------------------------------
+CC_FLAGS =  /nologo /c /WX /GS- /W4 /Gs32768 /D UNICODE /O1ib2s /GL /Gy /FIAutoGen.h /EHs-c- /GR- /GF /Gw /X
+------------------------------------------------------------------------------------------------------------------------
+SLINK_FLAGS =  /NOLOGO /LTCG
+------------------------------------------------------------------------------------------------------------------------
+DLINK_FLAGS =  /NOLOGO /NODEFAULTLIB /IGNORE:4001 /IGNORE:4254 /OPT:REF /OPT:ICF=10 /MAP /ALIGN:4096 /SECTION:.xdata,D
+/SECTION:.pdata,D /Machine:X64 /LTCG /DLL /ENTRY:$(IMAGE_ENTRY_POINT) /SUBSYSTEM:EFI_BOOT_SERVICE_DRIVER /SAFESEH:NO
+/BASE:0 /DRIVER
+<---------------------------------------------------------------------------------------------------------------------->
+<======================================================================================================================>
+
+>======================================================================================================================<
+Module Summary
+Module Name:          SharedCryptoDxe
+Module Arch:          X64
+Module INF Path:      SharedCryptoPkg\Driver\SharedCryptoDxe.inf
+File GUID:            FEA01457-E381-4135-9475-C6AFD0076C61
+Size:                 0x6FC00 (447.00K)
+Build Time Stamp:     1970-01-01 00:00:00
+Module Build Time:    18218ms
+Driver Type:          0x7 (DRIVER)
+PI Spec Version:      0x0001000A
+========================================================================================================================
+>----------------------------------------------------------------------------------------------------------------------<
+PCD
+------------------------------------------------------------------------------------------------------------------------
+gEfiMdePkgTokenSpaceGuid
+    PcdControlFlowEnforcementPropertyMask   :  FIXED   (UINT32) = 0x0 (0)
+    PcdMaximumAsciiStringLength          :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumLinkedListLength           :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumUnicodeStringLength        :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdVerifyNodeInList                  :   FLAG  (BOOLEAN) = 0
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Library
+------------------------------------------------------------------------------------------------------------------------
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePcdLibNull\BasePcdLibNull.inf
+{PcdLib:  Time = 123ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseLib\BaseLib.inf
+{BaseLib:  Time = 584ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull.inf
+{DebugLib:  Time = 179ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseMemoryLib\BaseMemoryLib.inf
+{BaseMemoryLib:  Time = 182ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib.inf
+{UefiBootServicesTableLib:  C = UefiBootServicesTableLibConstructor Time = 149ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePrintLib\BasePrintLib.inf
+{PrintLib:  Time = 210ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\IntrinsicLib\IntrinsicLib.inf
+{IntrinsicLib:  Time = 160ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\OpensslLib\OpensslLib.inf
+{OpensslLib:  Time = 6614ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiRuntimeServicesTableLib\UefiRuntimeServicesTableLib.inf
+{UefiRuntimeServicesTableLib:  C = UefiRuntimeServicesTableLibConstructor Time = 194ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib.inf
+{MemoryAllocationLib:  Time = 209ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseRngLib\BaseRngLib.inf
+{RngLib:  C = BaseRngLibConstructor Time = 135ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\BaseCryptLib\BaseCryptLib.inf
+{BaseCryptLib:  Time = 377ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiDriverEntryPoint\UefiDriverEntryPoint.inf
+{UefiDriverEntryPoint:  Time = 233ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseBinSecurityLibRng\BaseBinSecurityLibRng.inf
+{BaseBinSecurityLib:  Time = 176ms}
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Final Dependency Expression (DEPEX) Instructions
+  TRUE
+  END
+------------------------------------------------------------------------------------------------------------------------
+Dependency Expression (DEPEX) from INF
+(TRUE)
+------------------------------------------------------------------------------------------------------------------------
+From Module INF:  TRUE
+From Library INF: (None)
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Build Flags
+Tool Chain Tag: VSLATESTx86
+------------------------------------------------------------------------------------------------------------------------
+CC_FLAGS =  /nologo /c /WX /GS- /W4 /Gs32768 /D UNICODE /O1ib2s /GL /Gy /FIAutoGen.h /EHs-c- /GR- /GF /Gw /X
+------------------------------------------------------------------------------------------------------------------------
+SLINK_FLAGS =  /NOLOGO /LTCG
+------------------------------------------------------------------------------------------------------------------------
+DLINK_FLAGS =  /NOLOGO /NODEFAULTLIB /IGNORE:4001 /IGNORE:4254 /OPT:REF /OPT:ICF=10 /MAP /ALIGN:4096 /SECTION:.xdata,D
+/SECTION:.pdata,D /Machine:X64 /LTCG /DLL /ENTRY:$(IMAGE_ENTRY_POINT) /SUBSYSTEM:EFI_BOOT_SERVICE_DRIVER /SAFESEH:NO
+/BASE:0 /DRIVER
+<---------------------------------------------------------------------------------------------------------------------->
+<======================================================================================================================>
+
+>======================================================================================================================<
+Module Summary
+Module Name:          SharedCryptoDxeMu
+Module Arch:          X64
+Module INF Path:      SharedCryptoPkg\Driver\SharedCryptoDxeMu.inf
+File GUID:            BECD81FD-AC56-4308-BEFC-957EA17384D2
+Size:                 0x60C00 (387.00K)
+Build Time Stamp:     1970-01-01 00:00:00
+Module Build Time:    17916ms
+Driver Type:          0x7 (DRIVER)
+PI Spec Version:      0x0001000A
+========================================================================================================================
+>----------------------------------------------------------------------------------------------------------------------<
+PCD
+------------------------------------------------------------------------------------------------------------------------
+gEfiMdePkgTokenSpaceGuid
+    PcdControlFlowEnforcementPropertyMask   :  FIXED   (UINT32) = 0x0 (0)
+    PcdMaximumAsciiStringLength          :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumLinkedListLength           :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumUnicodeStringLength        :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdVerifyNodeInList                  :   FLAG  (BOOLEAN) = 0
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Library
+------------------------------------------------------------------------------------------------------------------------
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePcdLibNull\BasePcdLibNull.inf
+{PcdLib:  Time = 123ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseLib\BaseLib.inf
+{BaseLib:  Time = 584ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull.inf
+{DebugLib:  Time = 179ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseMemoryLib\BaseMemoryLib.inf
+{BaseMemoryLib:  Time = 182ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib.inf
+{UefiBootServicesTableLib:  C = UefiBootServicesTableLibConstructor Time = 149ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePrintLib\BasePrintLib.inf
+{PrintLib:  Time = 210ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\IntrinsicLib\IntrinsicLib.inf
+{IntrinsicLib:  Time = 160ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\OpensslLib\OpensslLib.inf
+{OpensslLib:  Time = 6614ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiRuntimeServicesTableLib\UefiRuntimeServicesTableLib.inf
+{UefiRuntimeServicesTableLib:  C = UefiRuntimeServicesTableLibConstructor Time = 194ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib.inf
+{MemoryAllocationLib:  Time = 209ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseRngLib\BaseRngLib.inf
+{RngLib:  C = BaseRngLibConstructor Time = 135ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\BaseCryptLib\BaseCryptLib.inf
+{BaseCryptLib:  Time = 377ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiDriverEntryPoint\UefiDriverEntryPoint.inf
+{UefiDriverEntryPoint:  Time = 233ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseBinSecurityLibRng\BaseBinSecurityLibRng.inf
+{BaseBinSecurityLib:  Time = 176ms}
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Final Dependency Expression (DEPEX) Instructions
+  TRUE
+  END
+------------------------------------------------------------------------------------------------------------------------
+Dependency Expression (DEPEX) from INF
+(TRUE)
+------------------------------------------------------------------------------------------------------------------------
+From Module INF:  TRUE
+From Library INF: (None)
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Build Flags
+Tool Chain Tag: VSLATESTx86
+------------------------------------------------------------------------------------------------------------------------
+CC_FLAGS =  /nologo /c /WX /GS- /W4 /Gs32768 /D UNICODE /O1ib2s /GL /Gy /FIAutoGen.h /EHs-c- /GR- /GF /Gw /X
+------------------------------------------------------------------------------------------------------------------------
+SLINK_FLAGS =  /NOLOGO /LTCG
+------------------------------------------------------------------------------------------------------------------------
+DLINK_FLAGS =  /NOLOGO /NODEFAULTLIB /IGNORE:4001 /IGNORE:4254 /OPT:REF /OPT:ICF=10 /MAP /ALIGN:4096 /SECTION:.xdata,D
+/SECTION:.pdata,D /Machine:X64 /LTCG /DLL /ENTRY:$(IMAGE_ENTRY_POINT) /SUBSYSTEM:EFI_BOOT_SERVICE_DRIVER /SAFESEH:NO
+/BASE:0 /DRIVER
+<---------------------------------------------------------------------------------------------------------------------->
+<======================================================================================================================>
+
+>======================================================================================================================<
+Module Summary
+Module Name:          SharedCryptoSmm
+Module Arch:          X64
+Module INF Path:      SharedCryptoPkg\Driver\SharedCryptoSmm.inf
+File GUID:            391B853F-F488-479B-A3D6-870766C7A38F
+Size:                 0x6B200 (428.50K)
+Build Time Stamp:     1970-01-01 00:00:00
+Module Build Time:    18306ms
+Driver Type:          0xA (SMM)
+PI Spec Version:      0x00010014
+========================================================================================================================
+>----------------------------------------------------------------------------------------------------------------------<
+PCD
+------------------------------------------------------------------------------------------------------------------------
+gEfiMdePkgTokenSpaceGuid
+    PcdControlFlowEnforcementPropertyMask   :  FIXED   (UINT32) = 0x0 (0)
+    PcdDebugClearMemoryValue             :  FIXED    (UINT8) = 0xAF (175)
+    PcdDebugPrintErrorLevel              :  FIXED   (UINT32) = 0x80000000 (2147483648)
+    PcdDebugPropertyMask                 :  FIXED    (UINT8) = 0x0 (0)
+    PcdFixedDebugPrintErrorLevel         :  FIXED   (UINT32) = 0xFFFFFFFF (4294967295)
+    PcdMaximumAsciiStringLength          :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumLinkedListLength           :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumUnicodeStringLength        :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdReportStatusCodePropertyMask      :  FIXED    (UINT8) = 0x0 (0)
+    PcdVerifyNodeInList                  :   FLAG  (BOOLEAN) = 0
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Library
+------------------------------------------------------------------------------------------------------------------------
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseDebugPrintErrorLevelLib\BaseDebugPrintErrorLevelLib.inf
+{DebugPrintErrorLevelLib:  Time = 104ms}
+c:\git\mu_plus\MU_BASECORE\MdeModulePkg\Library\SmmReportStatusCodeLib\SmmReportStatusCodeLib.inf
+{ReportStatusCodeLib:  Time = 191ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\DxePcdLib\DxePcdLib.inf
+{PcdLib:  Depex = gEfiPcdProtocolGuid  Time = 231ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseLib\BaseLib.inf
+{BaseLib:  Time = 584ms}
+c:\git\mu_plus\MU_BASECORE\MdeModulePkg\Library\PeiDxeDebugLibReportStatusCode\PeiDxeDebugLibReportStatusCode.inf
+{DebugLib:  Time = 180ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseMemoryLibOptDxe\BaseMemoryLibOptDxe.inf
+{BaseMemoryLib:  Time = 302ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib.inf
+{UefiBootServicesTableLib:  C = UefiBootServicesTableLibConstructor Time = 149ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\SmmServicesTableLib\SmmServicesTableLib.inf
+{SmmServicesTableLib:  C = SmmServicesTableLibConstructor Depex = gEfiSmmBase2ProtocolGuid  Time = 181ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\SmmMemoryAllocationLib\SmmMemoryAllocationLib.inf
+{MemoryAllocationLib:  C = SmmMemoryAllocationLibConstructor D = SmmMemoryAllocationLibDestructor Depex =
+ gEfiSmmAccess2ProtocolGuid  Time = 196ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePrintLib\BasePrintLib.inf
+{PrintLib:  Time = 210ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\IntrinsicLib\IntrinsicLib.inf
+{IntrinsicLib:  Time = 160ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\OpensslLib\OpensslLib.inf
+{OpensslLib:  Time = 6614ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic.inf
+{IoLib:  Time = 171ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseRngLib\BaseRngLib.inf
+{RngLib:  C = BaseRngLibConstructor Time = 135ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiDriverEntryPoint\UefiDriverEntryPoint.inf
+{UefiDriverEntryPoint:  Time = 233ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\BaseCryptLib\SmmCryptLib.inf
+{BaseCryptLib:  Time = 389ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseBinSecurityLibRng\BaseBinSecurityLibRng.inf
+{BaseBinSecurityLib:  Time = 176ms}
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Final Dependency Expression (DEPEX) Instructions
+  PUSH gEfiPcdProtocolGuid
+  PUSH gEfiMmBaseProtocolGuid
+  PUSH gEfiMmAccessProtocolGuid
+  AND
+  AND
+  END
+------------------------------------------------------------------------------------------------------------------------
+Dependency Expression (DEPEX) from INF
+(TRUE) AND (gEfiPcdProtocolGuid) AND (gEfiSmmBase2ProtocolGuid) AND (gEfiSmmAccess2ProtocolGuid)
+------------------------------------------------------------------------------------------------------------------------
+From Module INF:  TRUE
+From Library INF: (gEfiPcdProtocolGuid) AND (gEfiSmmBase2ProtocolGuid) AND (gEfiSmmAccess2ProtocolGuid)
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Build Flags
+Tool Chain Tag: VSLATESTx86
+------------------------------------------------------------------------------------------------------------------------
+CC_FLAGS =  /nologo /c /WX /GS- /W4 /Gs32768 /D UNICODE /O1ib2s /GL /Gy /FIAutoGen.h /EHs-c- /GR- /GF /Gw /X
+------------------------------------------------------------------------------------------------------------------------
+SLINK_FLAGS =  /NOLOGO /LTCG
+------------------------------------------------------------------------------------------------------------------------
+DLINK_FLAGS =  /NOLOGO /NODEFAULTLIB /IGNORE:4001 /IGNORE:4254 /OPT:REF /OPT:ICF=10 /MAP /ALIGN:4096 /SECTION:.xdata,D
+/SECTION:.pdata,D /Machine:X64 /LTCG /DLL /ENTRY:$(IMAGE_ENTRY_POINT) /SUBSYSTEM:EFI_BOOT_SERVICE_DRIVER /SAFESEH:NO
+/BASE:0 /DRIVER
+<---------------------------------------------------------------------------------------------------------------------->
+<======================================================================================================================>
+
+>======================================================================================================================<
+Module Summary
+Module Name:          SharedCryptoSmmMu
+Module Arch:          X64
+Module INF Path:      SharedCryptoPkg\Driver\SharedCryptoSmmMu.inf
+File GUID:            8866803C-2F32-4835-B9AC-6510CAF56B52
+Size:                 0x5FE00 (383.50K)
+Build Time Stamp:     1970-01-01 00:00:00
+Module Build Time:    18079ms
+Driver Type:          0xA (SMM)
+PI Spec Version:      0x00010014
+========================================================================================================================
+>----------------------------------------------------------------------------------------------------------------------<
+PCD
+------------------------------------------------------------------------------------------------------------------------
+gEfiMdePkgTokenSpaceGuid
+    PcdControlFlowEnforcementPropertyMask   :  FIXED   (UINT32) = 0x0 (0)
+    PcdDebugClearMemoryValue             :  FIXED    (UINT8) = 0xAF (175)
+    PcdDebugPrintErrorLevel              :  FIXED   (UINT32) = 0x80000000 (2147483648)
+    PcdDebugPropertyMask                 :  FIXED    (UINT8) = 0x0 (0)
+    PcdFixedDebugPrintErrorLevel         :  FIXED   (UINT32) = 0xFFFFFFFF (4294967295)
+    PcdMaximumAsciiStringLength          :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumLinkedListLength           :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumUnicodeStringLength        :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdReportStatusCodePropertyMask      :  FIXED    (UINT8) = 0x0 (0)
+    PcdVerifyNodeInList                  :   FLAG  (BOOLEAN) = 0
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Library
+------------------------------------------------------------------------------------------------------------------------
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseDebugPrintErrorLevelLib\BaseDebugPrintErrorLevelLib.inf
+{DebugPrintErrorLevelLib:  Time = 104ms}
+c:\git\mu_plus\MU_BASECORE\MdeModulePkg\Library\SmmReportStatusCodeLib\SmmReportStatusCodeLib.inf
+{ReportStatusCodeLib:  Time = 191ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\DxePcdLib\DxePcdLib.inf
+{PcdLib:  Depex = gEfiPcdProtocolGuid  Time = 231ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseLib\BaseLib.inf
+{BaseLib:  Time = 584ms}
+c:\git\mu_plus\MU_BASECORE\MdeModulePkg\Library\PeiDxeDebugLibReportStatusCode\PeiDxeDebugLibReportStatusCode.inf
+{DebugLib:  Time = 180ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseMemoryLibOptDxe\BaseMemoryLibOptDxe.inf
+{BaseMemoryLib:  Time = 302ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib.inf
+{UefiBootServicesTableLib:  C = UefiBootServicesTableLibConstructor Time = 149ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\SmmServicesTableLib\SmmServicesTableLib.inf
+{SmmServicesTableLib:  C = SmmServicesTableLibConstructor Depex = gEfiSmmBase2ProtocolGuid  Time = 181ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\SmmMemoryAllocationLib\SmmMemoryAllocationLib.inf
+{MemoryAllocationLib:  C = SmmMemoryAllocationLibConstructor D = SmmMemoryAllocationLibDestructor Depex =
+ gEfiSmmAccess2ProtocolGuid  Time = 196ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePrintLib\BasePrintLib.inf
+{PrintLib:  Time = 210ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\IntrinsicLib\IntrinsicLib.inf
+{IntrinsicLib:  Time = 160ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\OpensslLib\OpensslLib.inf
+{OpensslLib:  Time = 6614ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseIoLibIntrinsic\BaseIoLibIntrinsic.inf
+{IoLib:  Time = 171ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseRngLib\BaseRngLib.inf
+{RngLib:  C = BaseRngLibConstructor Time = 135ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiDriverEntryPoint\UefiDriverEntryPoint.inf
+{UefiDriverEntryPoint:  Time = 233ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\BaseCryptLib\SmmCryptLib.inf
+{BaseCryptLib:  Time = 389ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseBinSecurityLibRng\BaseBinSecurityLibRng.inf
+{BaseBinSecurityLib:  Time = 176ms}
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Final Dependency Expression (DEPEX) Instructions
+  PUSH gEfiPcdProtocolGuid
+  PUSH gEfiMmBaseProtocolGuid
+  PUSH gEfiMmAccessProtocolGuid
+  AND
+  AND
+  END
+------------------------------------------------------------------------------------------------------------------------
+Dependency Expression (DEPEX) from INF
+(TRUE) AND (gEfiPcdProtocolGuid) AND (gEfiSmmBase2ProtocolGuid) AND (gEfiSmmAccess2ProtocolGuid)
+------------------------------------------------------------------------------------------------------------------------
+From Module INF:  TRUE
+From Library INF: (gEfiPcdProtocolGuid) AND (gEfiSmmBase2ProtocolGuid) AND (gEfiSmmAccess2ProtocolGuid)
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Build Flags
+Tool Chain Tag: VSLATESTx86
+------------------------------------------------------------------------------------------------------------------------
+CC_FLAGS =  /nologo /c /WX /GS- /W4 /Gs32768 /D UNICODE /O1ib2s /GL /Gy /FIAutoGen.h /EHs-c- /GR- /GF /Gw /X
+------------------------------------------------------------------------------------------------------------------------
+SLINK_FLAGS =  /NOLOGO /LTCG
+------------------------------------------------------------------------------------------------------------------------
+DLINK_FLAGS =  /NOLOGO /NODEFAULTLIB /IGNORE:4001 /IGNORE:4254 /OPT:REF /OPT:ICF=10 /MAP /ALIGN:4096 /SECTION:.xdata,D
+/SECTION:.pdata,D /Machine:X64 /LTCG /DLL /ENTRY:$(IMAGE_ENTRY_POINT) /SUBSYSTEM:EFI_BOOT_SERVICE_DRIVER /SAFESEH:NO
+/BASE:0 /DRIVER
+<---------------------------------------------------------------------------------------------------------------------->
+<======================================================================================================================>
+
+>======================================================================================================================<
+Module Summary
+Module Name:          SharedCryptoPeiShaOnly
+Module Arch:          AARCH64
+Module INF Path:      SharedCryptoPkg\Driver\SharedCryptoPeiShaOnly.inf
+File GUID:            0D1CE46B-72D9-4BA7-95DA-23511865E661
+Size:                 0x2200 (8.50K)
+Build Time Stamp:     1970-01-01 00:00:00
+Module Build Time:    8818ms
+Driver Type:          0x6 (PEIM)
+========================================================================================================================
+>----------------------------------------------------------------------------------------------------------------------<
+PCD
+------------------------------------------------------------------------------------------------------------------------
+gEfiMdePkgTokenSpaceGuid
+    PcdControlFlowEnforcementPropertyMask   :  FIXED   (UINT32) = 0x0 (0)
+    PcdDebugClearMemoryValue             :  FIXED    (UINT8) = 0xAF (175)
+    PcdDebugPrintErrorLevel              :  FIXED   (UINT32) = 0x80000000 (2147483648)
+    PcdDebugPropertyMask                 :  FIXED    (UINT8) = 0x0 (0)
+    PcdFixedDebugPrintErrorLevel         :  FIXED   (UINT32) = 0xFFFFFFFF (4294967295)
+    PcdMaximumAsciiStringLength          :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumLinkedListLength           :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumUnicodeStringLength        :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdVerifyNodeInList                  :   FLAG  (BOOLEAN) = 0
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Library
+------------------------------------------------------------------------------------------------------------------------
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseDebugPrintErrorLevelLib\BaseDebugPrintErrorLevelLib.inf
+{DebugPrintErrorLevelLib:  Time = 202ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseReportStatusCodeLibNull\BaseReportStatusCodeLibNull.inf
+{ReportStatusCodeLib:  Time = 286ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiPcdLib\PeiPcdLib.inf
+{PcdLib:  Depex = gEfiPeiPcdPpiGuid  Time = 236ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseLib\BaseLib.inf
+{BaseLib:  Time = 446ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiHobLib\PeiHobLib.inf
+{HobLib:  Time = 336ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseMemoryLib\BaseMemoryLib.inf
+{BaseMemoryLib:  Time = 283ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiMemoryAllocationLib\PeiMemoryAllocationLib.inf
+{MemoryAllocationLib:  Time = 248ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiServicesLib\PeiServicesLib.inf
+{PeiServicesLib:  Time = 524ms}
+c:\git\mu_plus\MsCorePkg\Library\PeiDebugLib\PeiDebugLib.inf
+{DebugLib:  Depex = gDebugPortPpiGuid  Time = 596ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeiServicesTablePointerLib\PeiServicesTablePointerLib.inf
+{PeiServicesTablePointerLib:  C = PeiServicesTablePointerLibConstructor Time = 617ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\IntrinsicLib\IntrinsicLib.inf
+{IntrinsicLib:  Time = 709ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\OpensslLib\OpensslLib.inf
+{OpensslLib:  Time = 9424ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\PeimEntryPoint\PeimEntryPoint.inf
+{PeimEntryPoint:  Time = 856ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\BaseCryptLib\PeiCryptLib.inf
+{BaseCryptLib:  Time = 1025ms}
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Final Dependency Expression (DEPEX) Instructions
+  PUSH gEfiPeiPcdPpiGuid
+  PUSH gDebugPortPpiGuid
+  AND
+  END
+------------------------------------------------------------------------------------------------------------------------
+Dependency Expression (DEPEX) from INF
+(TRUE) AND (gEfiPeiPcdPpiGuid) AND (gDebugPortPpiGuid)
+------------------------------------------------------------------------------------------------------------------------
+From Module INF:  TRUE
+From Library INF: (gEfiPeiPcdPpiGuid) AND (gDebugPortPpiGuid)
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Build Flags
+Tool Chain Tag: VSLATESTx86
+------------------------------------------------------------------------------------------------------------------------
+CC_FLAGS =  /X /nologo $(PLATFORM_FLAGS) /c /WX /GS- /W4 /Gs32768 /D UNICODE /O1ib2s /GL /Gy /FIAutoGen.h /EHs-c- /GR-
+/GF /wd4214 /wd4127 /wd4100 /wd4312 /wd4702
+------------------------------------------------------------------------------------------------------------------------
+SLINK_FLAGS =  /NOLOGO /LTCG
+------------------------------------------------------------------------------------------------------------------------
+DLINK_FLAGS =  /NOLOGO /NODEFAULTLIB /RunBelow4GB /IGNORE:4001 /IGNORE:4254 /IGNORE:4226 /OPT:REF /OPT:ICF=10 /MAP
+/SECTION:.xdata,D /SECTION:.pdata,D /Machine:ARM64 /LTCG /DLL /ENTRY:$(IMAGE_ENTRY_POINT)
+/SUBSYSTEM:EFI_BOOT_SERVICE_DRIVER /SAFESEH:NO /BASE:0 /DRIVER /MERGE:.rdata=.data
+<---------------------------------------------------------------------------------------------------------------------->
+<======================================================================================================================>
+
+>======================================================================================================================<
+Module Summary
+Module Name:          SharedCryptoDxe
+Module Arch:          AARCH64
+Module INF Path:      SharedCryptoPkg\Driver\SharedCryptoDxe.inf
+File GUID:            FEA01457-E381-4135-9475-C6AFD0076C61
+Size:                 0x7AE00 (491.50K)
+Build Time Stamp:     1970-01-01 00:00:00
+Module Build Time:    15024ms
+Driver Type:          0x7 (DRIVER)
+PI Spec Version:      0x0001000A
+========================================================================================================================
+>----------------------------------------------------------------------------------------------------------------------<
+PCD
+------------------------------------------------------------------------------------------------------------------------
+gEfiMdePkgTokenSpaceGuid
+    PcdControlFlowEnforcementPropertyMask   :  FIXED   (UINT32) = 0x0 (0)
+    PcdMaximumAsciiStringLength          :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumLinkedListLength           :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumUnicodeStringLength        :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdVerifyNodeInList                  :   FLAG  (BOOLEAN) = 0
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Library
+------------------------------------------------------------------------------------------------------------------------
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseMemoryLib\BaseMemoryLib.inf
+{BaseMemoryLib:  Time = 283ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePcdLibNull\BasePcdLibNull.inf
+{PcdLib:  Time = 1059ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseLib\BaseLib.inf
+{BaseLib:  Time = 446ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull.inf
+{DebugLib:  Time = 821ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib.inf
+{UefiBootServicesTableLib:  C = UefiBootServicesTableLibConstructor Time = 463ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePrintLib\BasePrintLib.inf
+{PrintLib:  Time = 414ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\IntrinsicLib\IntrinsicLib.inf
+{IntrinsicLib:  Time = 709ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\OpensslLib\OpensslLib.inf
+{OpensslLib:  Time = 9424ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiRuntimeServicesTableLib\UefiRuntimeServicesTableLib.inf
+{UefiRuntimeServicesTableLib:  C = UefiRuntimeServicesTableLibConstructor Time = 442ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib.inf
+{MemoryAllocationLib:  Time = 350ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\BaseCryptLib\BaseCryptLib.inf
+{BaseCryptLib:  Time = 743ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiDriverEntryPoint\UefiDriverEntryPoint.inf
+{UefiDriverEntryPoint:  Time = 541ms}
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Final Dependency Expression (DEPEX) Instructions
+  TRUE
+  END
+------------------------------------------------------------------------------------------------------------------------
+Dependency Expression (DEPEX) from INF
+(TRUE)
+------------------------------------------------------------------------------------------------------------------------
+From Module INF:  TRUE
+From Library INF: (None)
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Build Flags
+Tool Chain Tag: VSLATESTx86
+------------------------------------------------------------------------------------------------------------------------
+CC_FLAGS =  /X /nologo $(PLATFORM_FLAGS) /c /WX /GS- /W4 /Gs32768 /D UNICODE /O1ib2s /GL /Gy /FIAutoGen.h /EHs-c- /GR-
+/GF /wd4214 /wd4127 /wd4100 /wd4312 /wd4702
+------------------------------------------------------------------------------------------------------------------------
+SLINK_FLAGS =  /NOLOGO /LTCG
+------------------------------------------------------------------------------------------------------------------------
+DLINK_FLAGS =  /NOLOGO /NODEFAULTLIB /RunBelow4GB /IGNORE:4001 /IGNORE:4254 /IGNORE:4226 /OPT:REF /OPT:ICF=10 /MAP
+/SECTION:.xdata,D /SECTION:.pdata,D /Machine:ARM64 /LTCG /DLL /ENTRY:$(IMAGE_ENTRY_POINT)
+/SUBSYSTEM:EFI_BOOT_SERVICE_DRIVER /SAFESEH:NO /BASE:0 /DRIVER /MERGE:.rdata=.data
+<---------------------------------------------------------------------------------------------------------------------->
+<======================================================================================================================>
+
+>======================================================================================================================<
+Module Summary
+Module Name:          SharedCryptoDxeMu
+Module Arch:          AARCH64
+Module INF Path:      SharedCryptoPkg\Driver\SharedCryptoDxeMu.inf
+File GUID:            BECD81FD-AC56-4308-BEFC-957EA17384D2
+Size:                 0x67E00 (415.50K)
+Build Time Stamp:     1970-01-01 00:00:00
+Module Build Time:    14470ms
+Driver Type:          0x7 (DRIVER)
+PI Spec Version:      0x0001000A
+========================================================================================================================
+>----------------------------------------------------------------------------------------------------------------------<
+PCD
+------------------------------------------------------------------------------------------------------------------------
+gEfiMdePkgTokenSpaceGuid
+    PcdControlFlowEnforcementPropertyMask   :  FIXED   (UINT32) = 0x0 (0)
+    PcdMaximumAsciiStringLength          :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumLinkedListLength           :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdMaximumUnicodeStringLength        :  FIXED   (UINT32) = 0xF4240 (1000000)
+    PcdVerifyNodeInList                  :   FLAG  (BOOLEAN) = 0
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Library
+------------------------------------------------------------------------------------------------------------------------
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseMemoryLib\BaseMemoryLib.inf
+{BaseMemoryLib:  Time = 283ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePcdLibNull\BasePcdLibNull.inf
+{PcdLib:  Time = 1059ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseLib\BaseLib.inf
+{BaseLib:  Time = 446ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BaseDebugLibNull\BaseDebugLibNull.inf
+{DebugLib:  Time = 821ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiBootServicesTableLib\UefiBootServicesTableLib.inf
+{UefiBootServicesTableLib:  C = UefiBootServicesTableLibConstructor Time = 463ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\BasePrintLib\BasePrintLib.inf
+{PrintLib:  Time = 414ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\IntrinsicLib\IntrinsicLib.inf
+{IntrinsicLib:  Time = 709ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\OpensslLib\OpensslLib.inf
+{OpensslLib:  Time = 9424ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiRuntimeServicesTableLib\UefiRuntimeServicesTableLib.inf
+{UefiRuntimeServicesTableLib:  C = UefiRuntimeServicesTableLibConstructor Time = 442ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiMemoryAllocationLib\UefiMemoryAllocationLib.inf
+{MemoryAllocationLib:  Time = 350ms}
+c:\git\mu_plus\Common\MU_TIANO\CryptoPkg\Library\BaseCryptLib\BaseCryptLib.inf
+{BaseCryptLib:  Time = 743ms}
+c:\git\mu_plus\MU_BASECORE\MdePkg\Library\UefiDriverEntryPoint\UefiDriverEntryPoint.inf
+{UefiDriverEntryPoint:  Time = 541ms}
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Final Dependency Expression (DEPEX) Instructions
+  TRUE
+  END
+------------------------------------------------------------------------------------------------------------------------
+Dependency Expression (DEPEX) from INF
+(TRUE)
+------------------------------------------------------------------------------------------------------------------------
+From Module INF:  TRUE
+From Library INF: (None)
+<---------------------------------------------------------------------------------------------------------------------->
+>----------------------------------------------------------------------------------------------------------------------<
+Build Flags
+Tool Chain Tag: VSLATESTx86
+------------------------------------------------------------------------------------------------------------------------
+CC_FLAGS =  /X /nologo $(PLATFORM_FLAGS) /c /WX /GS- /W4 /Gs32768 /D UNICODE /O1ib2s /GL /Gy /FIAutoGen.h /EHs-c- /GR-
+/GF /wd4214 /wd4127 /wd4100 /wd4312 /wd4702
+------------------------------------------------------------------------------------------------------------------------
+SLINK_FLAGS =  /NOLOGO /LTCG
+------------------------------------------------------------------------------------------------------------------------
+DLINK_FLAGS =  /NOLOGO /NODEFAULTLIB /RunBelow4GB /IGNORE:4001 /IGNORE:4254 /IGNORE:4226 /OPT:REF /OPT:ICF=10 /MAP
+/SECTION:.xdata,D /SECTION:.pdata,D /Machine:ARM64 /LTCG /DLL /ENTRY:$(IMAGE_ENTRY_POINT)
+/SUBSYSTEM:EFI_BOOT_SERVICE_DRIVER /SAFESEH:NO /BASE:0 /DRIVER /MERGE:.rdata=.data
+<---------------------------------------------------------------------------------------------------------------------->
+<======================================================================================================================>
+

@@ -1,0 +1,256 @@
+﻿% Copyright (c) 2015 Tom Pollard 
+% Copyright 2019  NXP
+% 
+% Licensed under the MIT License.
+%
+% Original Tom Pollard version of the file can be obtained from:
+% https://github.com/tompollard/phd_thesis_markdown/blob/master/style/template.tex  
+%
+
+\PassOptionsToPackage{table}{xcolor}
+\documentclass[table,oneside,openright,$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$else$a4paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$,tablecaptionabove]{$if(book)$scrbook$else$scrartcl$endif$}
+
+% \usepackage{lmodern}
+% \usepackage{FiraMono}
+% \usepackage{FiraSans}
+\usepackage{sourcesanspro}
+% \usepackage{sourcecodepro}
+\usepackage{courier}
+
+\renewcommand*\familydefault{\sfdefault}
+
+% Overwrite \begin{figure}[htbp] with \begin{figure}[H]
+\usepackage{float}
+\floatplacement{figure}{H}
+
+% fix for pandoc 1.14
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+$if(linestretch)$
+\usepackage{setspace}
+\setstretch{$linestretch$}
+$endif$
+\linespread{1.2}
+
+\usepackage{amssymb,amsmath}
+
+\usepackage{fixltx2e} % provides \textsubscript
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
+$if(euro)$
+\usepackage{eurosym}
+$endif$
+
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+$if(geometry)$
+\usepackage[margin=2.5cm,includehead=true,includefoot=true,centering,$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+$else$
+\usepackage[margin=2.5cm,includehead=true,includefoot=true,centering]{geometry}
+$endif$
+
+$if(natbib)$
+\usepackage{natbib}
+\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+$endif$
+$if(biblatex)$
+\usepackage{biblatex}
+$if(biblio-files)$
+\bibliography{$biblio-files$}
+$endif$
+$endif$
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
+$if(tables)$
+\usepackage{longtable,booktabs}
+\usepackage[table]{xcolor}
+
+\definecolor{bluelight}{HTML}{cbe1f1}
+\definecolor{bluedark}{HTML}{003588}
+\definecolor{white}{rgb}{1.0, 1.0, 1.0}
+\let\oldlongtable\longtable
+
+\let\endoldlongtable\endlongtable
+
+\renewenvironment{longtable}{\rowcolors{2}{white}{bluelight}\oldlongtable} {
+\endoldlongtable}
+\arrayrulecolor{white}
+$endif$
+$if(graphics)$
+\usepackage{graphicx,grffile}
+\usepackage{tikz}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+$endif$
+\usepackage[unicode=true]{hyperref}
+
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            bookmarksnumbered=true,
+            pdfauthor={$author-meta$},
+            pdftitle={$title-meta$},
+            colorlinks=true,
+            citecolor=bluedark,
+            urlcolor=bluedark,
+            linkcolor=bluedark,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+$if(links-as-notes)$
+% Make links footnotes instead of hotlinks:
+\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+$endif$
+$if(strikeout)$
+\usepackage[normalem]{ulem}
+% avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+$endif$
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+\setcounter{secnumdepth}{3}
+
+$if(verbatim-in-note)$
+\VerbatimFootnotes % allows verbatim text in footnotes
+$endif$
+
+$if(lang)$
+\usepackage[$babel-lang$]{babel}
+$endif$
+
+$if(title)$
+\title{$title$$if(subtitle)$\\\vspace{0.5em}{\large $subtitle$}$endif$}
+$endif$
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+\date{$date$}
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\usepackage{fancyhdr}
+\fancypagestyle{body}{
+  \fancyhead{}
+  \fancyfoot{}
+  \fancyhead[LO,RE]{\slshape \leftmark}
+  
+  \lfoot[$if(footer-right)$$footer-right$$else$\thepage$endif$]{$if(footer-left)$$footer-left$$else$$for(author)$$author$$sep$, $endfor$$endif$}
+  \rfoot[$if(footer-left)$$footer-left$$else$$for(author)$$author$$sep$, $endfor$$endif$]{$if(footer-right)$$footer-right$$else$\thepage$endif$}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% Style for Chapter page
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  
+  \lfoot[$if(footer-right)$$footer-right$$else$\thepage$endif$]{$if(footer-left)$$footer-left$$else$$for(author)$$author$$sep$, $endfor$$endif$}
+  \rfoot[$if(footer-left)$$footer-left$$else$$for(author)$$author$$sep$, $endfor$$endif$]{$if(footer-right)$$footer-right$$else$\thepage$endif$}
+  \renewcommand{\headrulewidth}{0pt}%   New chapter looks better without top rule
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+\renewcommand{\chapterheadstartvskip}{}
+\renewcommand{\chapterheadendvskip}{\vspace{1 em}}
+    
+% \makeatletter
+% \renewcommand{\sectionlinesformat}[4]{%
+%   \ifstr{#1}{section}{\clearpage}{}%
+%   \@hangfrom{\hskip #2#3}{#4}%
+% }
+% \makeatother
+
+\pagestyle{body}
+
+\setcounter{secnumdepth}{3}
+
+\begin{document}
+
+\begin{titlepage}
+$if(titlepage-background)$
+\newgeometry{top=16cm, right=4cm, bottom=3cm, left=4cm}
+\tikz[remember picture,overlay] \node[below, inner sep=0pt] at (current page.north){\includegraphics[width=\paperwidth,height=\paperheight]{$titlepage-background$}};
+$endif$
+
+\begin{flushleft}
+\color[HTML]{$if(titlepage-text-color)$$titlepage-text-color$$else$5F5F5F$endif$}
+\noindent {\huge \textbf{\textsf{$title$}}}\\
+$if(subtitle)$
+\vskip 1em
+\noindent {\Large \textsf{$subtitle$}}
+$endif$
+\vskip 1em
+\noindent {\textsf{Document Number: $document-number$}}\\
+\noindent {\textsf{Rev. $revision$, $date$}\hfill}
+\end{flushleft}
+
+\begin{figure}[!b]
+
+$if(logo)$
+$for(logo)$
+\includegraphics[height=$if(logo-height)$$logo-height$$else$20$endif$pt]{$logo$}
+$sep$
+\hskip 5mm
+$endfor$
+$endif$ %logo
+\end{figure}
+
+\end{titlepage}
+\restoregeometry
+
+\newpage
+\thispagestyle{empty}
+\begin{flushleft}
+\noindent {\textsf{  }}
+\vfill
+Copyright © Microsoft Corporation. All rights reserved.\\
+Copyright © 2019 $author$.
+\end{flushleft}
+\clearpage
+
+$for(include-before)$
+$include-before$
+
+$endfor$
+
+$if(toc)$
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{3}
+\tableofcontents
+\newpage
+}
+$endif$
+$if(lot)$
+\listoftables
+$endif$
+$if(lof)$
+\listoffigures
+$endif$
+$body$
+
+$for(include-after)$
+$include-after$
+
+$endfor$
+\end{document}

@@ -1,0 +1,17 @@
+---
+subtitle: "for NXP i.MX Platform"
+author: NXP Semiconductors
+date: "10/2019"
+revision: "W1.0.0-ear"
+subject: "Windows 10 IoT for NXP i.MX Platform"
+keywords: [Windows, IoT, BSP, i.MX]
+footer-center: "Windows 10 IoT for NXP i.MX Platform"
+lang: "en"
+titlepage: true
+colorlinks: true
+graphics: true
+book: true
+listings-no-page-break: false
+toc-own-page: true
+titlepage-text-color: "5f5f5f"
+...
