@@ -192,6 +192,7 @@ int psci_cpu_off(void)
 	int rc;
 	unsigned int target_pwrlvl = PLAT_MAX_PWR_LVL;
 
+	NOTICE("psci_cpu_off\n");
 	/*
 	 * Do what is needed to power off this CPU and possible higher power
 	 * levels if it able to do so. Upon success, enter the final wfi
@@ -389,6 +390,7 @@ u_register_t psci_smc_handler(uint32_t smc_fid,
 
 		switch (smc_fid) {
 		case PSCI_VERSION:
+			NOTICE("PSCI-version\n");
 			ret = (u_register_t)psci_version();
 			break;
 
@@ -401,6 +403,7 @@ u_register_t psci_smc_handler(uint32_t smc_fid,
 			break;
 
 		case PSCI_CPU_ON_AARCH32:
+			NOTICE("PSCI-cpu-on-32\n");
 			ret = (u_register_t)psci_cpu_on(r1, r2, r3);
 			break;
 
@@ -479,6 +482,7 @@ u_register_t psci_smc_handler(uint32_t smc_fid,
 			break;
 
 		case PSCI_CPU_ON_AARCH64:
+			NOTICE("PSCI-cpu-on-64\n");
 			ret = (u_register_t)psci_cpu_on(x1, x2, x3);
 			break;
 

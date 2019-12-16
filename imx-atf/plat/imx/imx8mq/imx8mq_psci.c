@@ -27,6 +27,8 @@ int imx_pwr_domain_on(u_register_t mpidr)
 
 	core_id = MPIDR_AFFLVL0_VAL(mpidr);
 
+	NOTICE("imx_pwr_domain_on(%d) %llx\n", core_id, base_addr);
+
 	/* set the secure entrypoint */
 	imx_set_cpu_secure_entry(core_id, base_addr);
 	/* power up the core */
@@ -37,6 +39,11 @@ int imx_pwr_domain_on(u_register_t mpidr)
 
 void imx_pwr_domain_on_finish(const psci_power_state_t *target_state)
 {
+	uint64_t mpidr = read_mpidr_el1();
+	unsigned int core_id = MPIDR_AFFLVL0_VAL(mpidr);
+
+	NOTICE("imx_pwr_domain_finish(%d)\n", core_id);
+
 	/* program the GIC per cpu dist and rdist interface */
 	plat_gic_pcpu_init();
 	/* enable the GICv3 cpu interface */
@@ -48,6 +55,7 @@ void imx_pwr_domain_off(const psci_power_state_t *target_state)
 	uint64_t mpidr = read_mpidr_el1();
 	unsigned int core_id = MPIDR_AFFLVL0_VAL(mpidr);
 
+	NOTICE("imx_pwr_domain_off(%d)\n", core_id);
 	/* disable the GIC cpu interface first */
 	plat_gic_cpuif_disable();
 	/* config the core for power down */

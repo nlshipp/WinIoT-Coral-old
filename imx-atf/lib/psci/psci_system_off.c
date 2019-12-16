@@ -14,6 +14,7 @@
 
 void __dead2 psci_system_off(void)
 {
+	NOTICE("psci_system_off\n");
 	psci_print_power_domain_map();
 
 	assert(psci_plat_pm_ops->system_off != NULL);
@@ -33,6 +34,7 @@ void __dead2 psci_system_off(void)
 
 void __dead2 psci_system_reset(void)
 {
+	NOTICE("psci_system_reset\n");
 	psci_print_power_domain_map();
 
 	assert(psci_plat_pm_ops->system_reset != NULL);
@@ -54,6 +56,7 @@ u_register_t psci_system_reset2(uint32_t reset_type, u_register_t cookie)
 {
 	unsigned int is_vendor;
 
+	NOTICE("psci_system_reset2\n");
 	psci_print_power_domain_map();
 
 	assert(psci_plat_pm_ops->system_reset2 != NULL);
