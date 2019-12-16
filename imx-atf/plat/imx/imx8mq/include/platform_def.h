@@ -37,7 +37,7 @@
 #define BL32_LIMIT			0x100000000
 #define BL32_BASE			tee_base_address
 #else
-#define BL32_BASE			0xfe000000
+#define BL32_BASE			0x7e000000
 #endif
 
 /* non-secure uboot base */
@@ -61,7 +61,8 @@
 
 #define HAB_RVT_BASE			0x00000880 /* HAB_RVT for i.MX8MQ */
 
-#define IMX_BOOT_UART_BASE		0x30860000
+/* #define IMX_BOOT_UART_BASE		0x30860000 */
+#define IMX_BOOT_UART_BASE		0x30880000
 #define IMX_BOOT_UART_CLK_IN_HZ		25000000 /* Select 25Mhz oscillator */
 #define PLAT_CRASH_UART_BASE		IMX_BOOT_UART_BASE
 #define PLAT__CRASH_UART_CLK_IN_HZ	25000000
@@ -101,6 +102,6 @@
 
 #define COUNTER_FREQUENCY		8000000 /* 8MHz */
 
-#define DEBUG_CONSOLE			0
+#define DEBUG_CONSOLE			1
 #define IMX_WDOG_B_RESET
 #define PLAT_IMX8M			1
