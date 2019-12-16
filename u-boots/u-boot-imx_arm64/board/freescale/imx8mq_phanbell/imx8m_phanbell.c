@@ -20,6 +20,8 @@
 #include <asm/mach-imx/gpio.h>
 #include <asm/mach-imx/mxc_i2c.h>
 #include <asm/arch/clock.h>
+#include <asm/mach-imx/video.h>
+#include <asm/arch/video_common.h>
 #include <spl.h>
 #include <power/pmic.h>
 #include <usb.h>
@@ -61,7 +63,25 @@ int board_qspi_init(void)
 static iomux_v3_cfg_t const uart_pads[] = {
 	IMX8MQ_PAD_UART1_RXD__UART1_RX | MUX_PAD_CTRL(UART_PAD_CTRL),
 	IMX8MQ_PAD_UART1_TXD__UART1_TX | MUX_PAD_CTRL(UART_PAD_CTRL),
+	IMX8MQ_PAD_UART3_RXD__UART3_RX | MUX_PAD_CTRL(UART_PAD_CTRL),
+	IMX8MQ_PAD_UART3_TXD__UART3_TX | MUX_PAD_CTRL(UART_PAD_CTRL),
 };
+
+#ifdef CONFIG_SYS_I2C_MXC
+#define I2C_PAD_CTRL	(PAD_CTL_DSE6 | PAD_CTL_HYS | PAD_CTL_PUE)
+struct i2c_pads_info i2c_pad_info2 = {
+	.scl = {
+		.i2c_mode = IMX8MQ_PAD_I2C2_SCL__I2C2_SCL | MUX_PAD_CTRL(I2C_PAD_CTRL),
+		.gpio_mode = IMX8MQ_PAD_I2C2_SCL__GPIO5_IO16 | MUX_PAD_CTRL(I2C_PAD_CTRL),
+		.gp = IMX_GPIO_NR(5, 16),
+	},
+	.sda = {
+		.i2c_mode = IMX8MQ_PAD_I2C2_SDA__I2C2_SDA | MUX_PAD_CTRL(I2C_PAD_CTRL),
+		.gpio_mode = IMX8MQ_PAD_I2C2_SDA__GPIO5_IO17 | MUX_PAD_CTRL(I2C_PAD_CTRL),
+		.gp = IMX_GPIO_NR(5, 17),
+	},
+};
+#endif
 
 int board_early_init_f(void)
 {
@@ -177,7 +197,8 @@ int get_tee_load(ulong *load)
 	board_id = get_imx8m_baseboard_id();
 	/* load TEE to the last 32M of DDR */
 	if ((board_id == ENTERPRISE_MICRON_1G) ||
-			(board_id == ENTERPRISE_HYNIX_1G)) {
+			(board_id == ENTERPRISE_HYNIX_1G) ||
+	    board_id = 0x68)) {
 		/* for 1G DDR board */
 		*load = (ulong)TEE_LOAD_ADDR_1G;
 	} else {
@@ -198,9 +219,10 @@ int dram_init(void)
 	 */
 	baseboard_id = get_imx8m_baseboard_id();
 	if ((baseboard_id == ENTERPRISE_MICRON_1G) ||
-			(baseboard_id == ENTERPRISE_HYNIX_1G)) {
+			(baseboard_id == ENTERPRISE_HYNIX_1G) ||
+	    (baseboard_id == 0x68)) {
 		/* 1G DDR size */
-		ddr_size = 0x40000000;
+		ddr_size = PHYS_SDRAM_SIZE;
 	} else{
 		/* Default to use 3G DDR size */
 		ddr_size = 0xc0000000;
@@ -346,6 +368,32 @@ int board_usb_cleanup(int index, enum usb_init_type init)
 }
 #endif
 
+#ifdef CONFIG_MXC_SPI
+#define SPI_PAD_CTRL	(PAD_CTL_DSE2 | PAD_CTL_HYS)
+static iomux_v3_cfg_t const ecspi1_pads[] = {
+	IMX8MQ_PAD_ECSPI1_SCLK__ECSPI1_SCLK | MUX_PAD_CTRL(SPI_PAD_CTRL),
+	IMX8MQ_PAD_ECSPI1_MOSI__ECSPI1_MOSI | MUX_PAD_CTRL(SPI_PAD_CTRL),
+	IMX8MQ_PAD_ECSPI1_MISO__ECSPI1_MISO | MUX_PAD_CTRL(SPI_PAD_CTRL),
+	IMX8MQ_PAD_ECSPI1_SS0__GPIO5_IO9 | MUX_PAD_CTRL(NO_PAD_CTRL),
+	IMX8MQ_PAD_NAND_CE1_B__GPIO3_IO2 | MUX_PAD_CTRL(NO_PAD_CTRL),
+};
+
+static void setup_spi(void)
+{
+	imx_iomux_v3_setup_multiple_pads(ecspi1_pads, ARRAY_SIZE(ecspi1_pads));
+	gpio_request(IMX_GPIO_NR(5, 9), "ECSPI1 SS0");
+	gpio_request(IMX_GPIO_NR(3, 2), "ECSPI1 SS1");
+}
+
+int board_spi_cs_gpio(unsigned bus, unsigned cs)
+{
+	if (bus == 0)
+		return IMX_GPIO_NR(5, 9);
+	else
+		return IMX_GPIO_NR(5, 13);
+}
+#endif
+
 int board_init(void)
 {
 	board_qspi_init();
@@ -357,6 +405,11 @@ int board_init(void)
 #if defined(CONFIG_USB_DWC3) || defined(CONFIG_USB_XHCI_IMX8M)
 	init_usb_clk();
 #endif
+
+#ifdef CONFIG_SYS_I2C_MXC
+	setup_i2c(1, CONFIG_SYS_I2C_SPEED, 0x7f, &i2c_pad_info2);
+#endif
+
 	return 0;
 }
 
@@ -375,10 +428,17 @@ int board_late_init(void)
 #ifdef CONFIG_ENV_IS_IN_MMC
 	board_late_mmc_env_init();
 #endif
+	// Set mmcdev through autodetect.  Android_things.h turns off mmcautodetect which 
+	// would be done in board_late_mmc_env_init().
+	u32 dev_no = mmc_get_env_dev();
+	env_set_ulong("mmcdev", dev_no);
+	printf("autodetected booting from mmcdev%d", dev_no);
+
 	int baseboard_id;
 	baseboard_id = get_imx8m_baseboard_id();
 	if ((baseboard_id == ENTERPRISE_MICRON_1G) ||
-			(baseboard_id == ENTERPRISE_HYNIX_1G)) {
+			(baseboard_id == ENTERPRISE_HYNIX_1G) ||
+	    (baseboard_id == 0x68)) {
 		/* 1G DDR size */
 		env_set("bootargs_ram_capacity", "cma=296M galcore.contiguousSize=8388608");
 	} else {
@@ -397,3 +457,49 @@ int is_recovery_key_pressing(void)
 }
 #endif /*CONFIG_ANDROID_RECOVERY*/
 #endif /*CONFIG_FSL_FASTBOOT*/
+
+#if defined(CONFIG_VIDEO_IMXDCSS)
+
+struct display_info_t const displays[] = {{
+	.bus	= 0, /* Unused */
+	.addr	= 0, /* Unused */
+	.pixfmt	= GDF_32BIT_X888RGB,
+	.detect	= NULL,
+	.enable	= NULL,
+#ifndef CONFIG_VIDEO_IMXDCSS_1080P
+	.mode	= {
+		.name           = "HDMI", /* 720P60 */
+		.refresh        = 60,
+		.xres           = 1280,
+		.yres           = 720,
+		.pixclock       = 13468, /* 74250  kHz */
+		.left_margin    = 110,
+		.right_margin   = 220,
+		.upper_margin   = 5,
+		.lower_margin   = 20,
+		.hsync_len      = 40,
+		.vsync_len      = 5,
+		.sync           = FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
+		.vmode          = FB_VMODE_NONINTERLACED
+	}
+#else
+	.mode	= {
+		.name           = "HDMI", /* 1080P60 */
+		.refresh        = 60,
+		.xres           = 1920,
+		.yres           = 1080,
+		.pixclock       = 6734, /* 148500 kHz */
+		.left_margin    = 148,
+		.right_margin   = 88,
+		.upper_margin   = 36,
+		.lower_margin   = 4,
+		.hsync_len      = 44,
+		.vsync_len      = 5,
+		.sync           = FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
+		.vmode          = FB_VMODE_NONINTERLACED
+	}
+#endif
+} };
+size_t display_count = ARRAY_SIZE(displays);
+
+#endif /* CONFIG_VIDEO_IMXDCSS */

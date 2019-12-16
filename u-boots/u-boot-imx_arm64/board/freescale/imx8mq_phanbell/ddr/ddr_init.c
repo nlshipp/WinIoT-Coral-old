@@ -168,8 +168,10 @@ void ddr_init(void)
 	int board_id = 0;
 
 	board_id = get_imx8m_baseboard_id();
+	printf("board_id= %x\n", board_id);
 	if ((board_id == ENTERPRISE_MICRON_1G) ||
-			(board_id == ENTERPRISE_HYNIX_1G)) {
+			(board_id == ENTERPRISE_HYNIX_1G) ||
+	    (board_id == 0x68)) {
 		/** Initialize DDR clock and DDRC registers **/
 		reg32_write(0x3038a088,0x7070000);
 		reg32_write(0x3038a084,0x4030000);

@@ -168,6 +168,7 @@
 			"booti; " \
 		"fi;\0"
 
+#ifndef CONFIG_BOOTCOMMAND
 #define CONFIG_BOOTCOMMAND \
 	   "mmc dev ${mmcdev}; if mmc rescan; then " \
 		   "if run loadbootscript; then " \
@@ -179,6 +180,7 @@
 			   "fi; " \
 		   "fi; " \
 	   "else booti ${loadaddr} - ${fdt_addr}; fi"
+#endif
 
 /* Link Definitions */
 #define CONFIG_LOADADDR			0x40480000
@@ -203,10 +205,12 @@
 
 #define CONFIG_SYS_SDRAM_BASE           0x40000000
 #define PHYS_SDRAM                      0x40000000
-#define PHYS_SDRAM_SIZE			0xBE000000 /* (3GB - 32M) DDR for uboot */
+#define PHYS_SDRAM_SIZE			0x3E000000 /* (1GB - 32M) DDR for uboot */
 #define CONFIG_NR_DRAM_BANKS		1
 
+#ifndef CONFIG_BAUDRATE
 #define CONFIG_BAUDRATE			115200
+#endif
 
 #define CONFIG_MXC_UART
 #define CONFIG_MXC_UART_BASE		UART1_BASE_ADDR
@@ -278,6 +282,18 @@
 #define CONFIG_USBD_HS
 #define CONFIG_USB_GADGET_VBUS_DRAW 2
 #define CONFIG_OF_SYSTEM_SETUP
+
+/* Framebuffer */
+#ifdef CONFIG_VIDEO
+#define CONFIG_VIDEO_IMXDCSS
+#define CONFIG_VIDEO_BMP_RLE8
+#define CONFIG_SPLASH_SCREEN
+#define CONFIG_SPLASH_SCREEN_ALIGN
+#define CONFIG_BMP_16BPP
+#define CONFIG_VIDEO_LOGO
+#define CONFIG_VIDEO_BMP_LOGO
+#define CONFIG_IMX_VIDEO_SKIP
+#endif
 
 #if defined (CONFIG_ANDROID_THINGS_SUPPORT)
 #include "imx8mq_evk_androidthings.h"

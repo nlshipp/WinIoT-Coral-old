@@ -186,7 +186,7 @@ static void _mxc_serial_setbrg(struct mxc_uart *base, unsigned long clk,
 #endif
 
 #define mxc_base	((struct mxc_uart *)CONFIG_MXC_UART_BASE)
-#define mxc_base2	((struct mxc_uart *)UART2_BASE_ADDR)
+#define mxc_base2	((struct mxc_uart *)UART3_BASE_ADDR)
 
 static void mxc_serial_setbrg(void)
 {

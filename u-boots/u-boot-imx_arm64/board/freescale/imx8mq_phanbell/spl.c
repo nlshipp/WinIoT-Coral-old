@@ -163,12 +163,13 @@ int power_init_board(void)
 	/* Set BUCK2 output for ARM to 0.85v */
 	pmic_reg_write(p, BD71837_BUCK2_VOLT_RUN, 0x0f);
 
+#if FALSE
 	/* Set BUCK3 output for GPU off */
 	pmic_reg_write(p, BD71837_BUCK3_CTRL, 0x46);
 
 	/* Set BUCK4 output for VPU off */
 	pmic_reg_write(p, BD71837_BUCK4_CTRL, 0x46);
-
+#endif
 	/* Set BUCK5 output for DRAM to 0.9V */
 	pmic_reg_write(p, BD71837_BUCK5_VOLT, 0x2);
 
@@ -217,7 +218,8 @@ void board_init_f(ulong dummy)
 
 	arch_cpu_init();
 
-	init_uart_clk(0); /* Init UART0 clock */
+	init_uart_clk(0); /* Init UART1 clock */
+	init_uart_clk(2); /* Init UART3 clock */
 
 	board_early_init_f();
 
