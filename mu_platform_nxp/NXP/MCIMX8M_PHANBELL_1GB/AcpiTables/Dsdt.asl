@@ -32,6 +32,6 @@ DefinitionBlock("DsdtTable.aml", "DSDT", 5, "MSFT", "EDK2", 1) {
     include("Dsdt-Enet.asl")
     include("Dsdt-Pwm.asl")
 //    include("Dsdt-Audio.asl")
-//    include("Dsdt-TrEE.asl")
+    include("Dsdt-TrEE.asl")
   }
 }
