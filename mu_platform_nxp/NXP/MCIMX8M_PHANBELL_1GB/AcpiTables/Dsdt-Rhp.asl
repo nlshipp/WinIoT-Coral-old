@@ -22,10 +22,16 @@ Device(RHPX)
   Name(_CRS, ResourceTemplate()
   {
     // Index 0
-//    I2CSerialBus(0xFFFF,, 0,, "\\_SB.I2C2",,,,)
+    I2CSerialBus(0xFFFF,, 0,, "\\_SB.I2C1",,,,)
 
     // Index 1
-//    I2CSerialBus(0xFFFF,, 0,, "\\_SB.I2C3",,,,)
+    I2CSerialBus(0xFFFF,, 0,, "\\_SB.I2C2",,,,)
+
+    // Index 2
+    I2CSerialBus(0xFFFF,, 0,, "\\_SB.I2C3",,,,)
+
+    // Index 3
+    I2CSerialBus(0xFFFF,, 0,, "\\_SB.I2C4",,,,)
 
     // Index 2
 //    SPISerialBus (          // SCLK
@@ -196,12 +202,14 @@ Device(RHPX)
     ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
     Package()
     {
-      // I2C busses 2-3
-      Package(2) { "bus-I2C-I2C2", Package() { 0 }},    // index 0
-      Package(2) { "bus-I2C-I2C3", Package() { 1 }},    // index 1
+      // I2C busses 1-4
+      Package(2) { "bus-I2C-I2C1", Package() { 0 }},    // index 0
+      Package(2) { "bus-I2C-I2C2", Package() { 1 }},    // index 1
+      Package(2) { "bus-I2C-I2C3", Package() { 2 }},    // index 2
+      Package(2) { "bus-I2C-I2C4", Package() { 3 }},    // index 3
 
       // SPI 1
-      Package(2) { "bus-SPI-SPI1", Package() { 2, 3 }},                    // Indices 2 and 3
+      Package(2) { "bus-SPI-SPI1", Package() { 4, 5 }},                    // Indices 4 and 5
       Package(2) { "SPI1-MinClockInHz", 46 },                              // 46 Hz
       Package(2) { "SPI1-MaxClockInHz", 12000000 },                        // 12 MHz
       Package(2) { "SPI1-SupportedDataBitLengths", Package() { 8,16,32 }}, // Data bit length

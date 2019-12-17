@@ -13,7 +13,7 @@
 *
 */
 
-// I2C1 is not exposed
+// I2C1 controls power management on SOM
 Device (I2C1)
 {
   Name (_HID, "NXP0104")
@@ -22,7 +22,7 @@ Device (I2C1)
 
   Method (_STA)
   {
-    Return(0x0)
+    Return(0xf)
   }
 
   Method (_CRS, 0x0, NotSerialized)
@@ -79,6 +79,7 @@ Device (I2C3)
   }
 }
 
+// I2C4 controls WiFi interface on SOM
 Device (I2C4)
 {
   Name (_HID, "NXP0104")
@@ -87,7 +88,7 @@ Device (I2C4)
 
   Method (_STA)
   {
-    Return(0x0)
+    Return(0xf)
   }
 
   Method (_CRS, 0x0, NotSerialized)
