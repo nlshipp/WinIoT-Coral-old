@@ -157,9 +157,15 @@ VOID I2cInit()
 
   // ungate I2C clocks
   MmioWrite32 (IMX_CCM_CCGR(23), IMX_CCM_CCGR_GATE_ALL_THE_TIME);	// 0x4170 - I2C1
-  MmioWrite32 (IMX_CCM_CCGR(24), IMX_CCM_CCGR_GATE_ALL_THE_TIME);	// 0x4170 - I2C2
-  MmioWrite32 (IMX_CCM_CCGR(25), IMX_CCM_CCGR_GATE_ALL_THE_TIME);	// 0x4170 - I2C3
-  MmioWrite32 (IMX_CCM_CCGR(26), IMX_CCM_CCGR_GATE_ALL_THE_TIME);	// 0x4170 - I2C4
+  MmioWrite32 (IMX_CCM_CCGR(24), IMX_CCM_CCGR_GATE_ALL_THE_TIME);	// 0x4180 - I2C2
+  MmioWrite32 (IMX_CCM_CCGR(25), IMX_CCM_CCGR_GATE_ALL_THE_TIME);	// 0x4190 - I2C3
+  MmioWrite32 (IMX_CCM_CCGR(26), IMX_CCM_CCGR_GATE_ALL_THE_TIME);	// 0x41A0 - I2C4
+}
+
+VOID SpiInit()
+{
+  // ungate SPI clock
+  MmioWrite32 (IMX_CCM_CCGR(7), IMX_CCM_CCGR_GATE_ALL_THE_TIME);  // 0x4070 - ECSPI1
 }
 
 /**
@@ -335,6 +341,7 @@ RETURN_STATUS ArmPlatformInitialize(IN UINTN MpId)
   ImxUngateActiveClock();
 //  AudioInit();
   I2cInit();
+  SpiInit();
   EnetInit();
 #if (FixedPcdGet32(PcdPcie1Enable) || FixedPcdGet32(PcdPcie2Enable))
   PcieInit ();

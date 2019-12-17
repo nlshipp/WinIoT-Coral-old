@@ -33,43 +33,43 @@ Device(RHPX)
     // Index 3
     I2CSerialBus(0xFFFF,, 0,, "\\_SB.I2C4",,,,)
 
-    // Index 2
-//    SPISerialBus (          // SCLK
-//                            // MOSI
-//                            // MISO
-//                            // SS0
-//      0,                    // Device selection (SS0)
-//      PolarityLow,          // Device selection polarity
-//      FourWireMode,         // wiremode
-//      8,                    // databit len
-//      ControllerInitiated,  // slave mode
-//      4000000,              // connection speed
-//      ClockPolarityLow,     // clock polarity
-//      ClockPhaseFirst,      // clock phase
-//      "\\_SB.SPI1",         // ResourceSource: SPI bus controller name
-//      0,                    // ResourceSourceIndex
-//                            // Resource usage
-//                            // DescriptorName: creates name for offset of resource descriptor
-//    )                       // Vendor Data
-//
-//    // Index 3
-//    SPISerialBus (          // SCLK
-//                            // MOSI
-//                            // MISO
-//                            // SS1
-//      1,                    // Device selection (SS1)
-//      PolarityLow,          // Device selection polarity
-//      FourWireMode,         // wiremode
-//      8,                    // databit len
-//      ControllerInitiated,  // slave mode
-//      4000000,              // connection speed
-//      ClockPolarityLow,     // clock polarity
-//      ClockPhaseFirst,      // clock phase
-//      "\\_SB.SPI1",         // ResourceSource: SPI bus controller name
-//      0,                    // ResourceSourceIndex
-//                            // Resource usage
-//                            // DescriptorName: creates name for offset of resource descriptor
-//    )                       // Vendor Data
+    // Index 4
+    SPISerialBus (          // SCLK
+                            // MOSI
+                            // MISO
+                            // SS0
+      0,                    // Device selection (SS0)
+      PolarityLow,          // Device selection polarity
+      FourWireMode,         // wiremode
+      8,                    // databit len
+      ControllerInitiated,  // slave mode
+      4000000,              // connection speed
+      ClockPolarityLow,     // clock polarity
+      ClockPhaseFirst,      // clock phase
+      "\\_SB.SPI1",         // ResourceSource: SPI bus controller name
+      0,                    // ResourceSourceIndex
+                            // Resource usage
+                            // DescriptorName: creates name for offset of resource descriptor
+    )                       // Vendor Data
+
+    // Index 5
+    SPISerialBus (          // SCLK
+                            // MOSI
+                            // MISO
+                            // SS1
+      1,                    // Device selection (SS1)
+      PolarityLow,          // Device selection polarity
+      FourWireMode,         // wiremode
+      8,                    // databit len
+      ControllerInitiated,  // slave mode
+      4000000,              // connection speed
+      ClockPolarityLow,     // clock polarity
+      ClockPhaseFirst,      // clock phase
+      "\\_SB.SPI1",         // ResourceSource: SPI bus controller name
+      0,                    // ResourceSourceIndex
+                            // Resource usage
+                            // DescriptorName: creates name for offset of resource descriptor
+    )                       // Vendor Data
 
 //    // GPIO1_IO01 PAD_GPIO1_IO01 (PWM1) - J15 pin 32
 //    GpioIO(Shared, PullNone, 0, 0, IoRestrictionNone, "\\_SB.GPIO", 0, ResourceConsumer, , ) { 1 } // 0 * 32 + 1
