@@ -394,13 +394,11 @@ EFI_STATUS PcieSetupInitSetting (
     IOMUXC_GPR_GPR14 |= IOMUXC_GPR_GPR14_GPR_PCIE1_PHY_FUNC_I_CMN_RSTN_MASK;
 #elif defined(CPU_IMX8MQ)
     IOMUXC_GPR_GPR14 |= IOMUXC_GPR_GPR14_GPR_PCIE1_PHY_FUNC_I_CMN_RSTN_MASK;
-    #if 0
     if (PcieDeviceDataPtr->PcieIndex == 0) {
       IOMUXC_GPR_GPR14 |= IOMUXC_GPR_GPR_PCIE1_REF_USE_PAD_MASK;
     } else {
       IOMUXC_GPR_GPR16 |= IOMUXC_GPR_GPR_PCIE2_REF_USE_PAD_MASK;
     }
-    #endif
 #endif
   }
 #if defined(CPU_IMX8MM)
@@ -1183,6 +1181,8 @@ EFI_STATUS PcieInitialize (
   UINT32                val32, Idx, PcieIdx;
   EFI_STATUS            Status;
 
+  PCIE_ERROR("PcieInitialize\n");
+
   for (PcieIdx = 0; PcieIdx < ARRAYSIZE(PcieDeviceData); PcieIdx++) {
 
     PcieDeviceDataPtr = &PcieDeviceData[PcieIdx];
@@ -1344,12 +1344,15 @@ EFI_STATUS PcieInitialize (
 
 Exit:
 
+    Status = EFI_SUCCESS;
+#if 0
     if (EFI_ERROR(Status)) {
       PCIE_ERROR("Failed to initialize PCIe%d, disabling controller\n", PcieIdx);
       PcieSetLinkStatus(PcieDeviceDataPtr, FALSE);
       PcieSetPhyState(PcieDeviceDataPtr, FALSE);
       PcieSetClockGate(0);
     }
+#endif
   }
   return Status;
 }

@@ -1,0 +1,3 @@
+NXPPhanbell_iMX8M_1GB
+board
+package

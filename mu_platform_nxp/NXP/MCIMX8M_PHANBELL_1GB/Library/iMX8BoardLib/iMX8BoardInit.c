@@ -258,6 +258,43 @@ VOID PcieInit ()
   /* Enable PCIE_CTRL clock root */
   CCM_CCGR_SET(37) = 0x03;
 
+#if 0
+	MX8MQ_IOMUXC_I2C4_SCL_PCIE1_CLKREQ_B        0x76 /* open drain, pull up */
+	MX8MQ_IOMUXC_NAND_DATA05_GPIO3_IO11     0x16 /* Disable - wl_regon */
+	MX8MQ_IOMUXC_NAND_DATA04_GPIO3_IO10     0x16 /* Reset - wl_nreset */
+	MX8MQ_IOMUXC_GPIO1_IO00_ANAMIX_REF_CLK_32K      0x5
+#endif
+
+  /* enable bluetooth/wifi module GPIO3_IO06 */
+  IOMUXC_SW_MUX_CTL_PAD_NAND_DATA00 = IOMUXC_MUX_ALT5;
+  IOMUXC_SW_PAD_CTL_PAD_NAND_DATA00 = 0x16;
+  GPIO3_DR |= (0x01 << 6);      /* Set the pad to the high level */
+  GPIO3_GDIR |= (0x01 << 6);    /* Set output direction */
+
+  /* Configure GPIO1_IOO00 to control PCIe ANAMIX_REF_CLK32 PAD */
+  IOMUXC_SW_MUX_CTL_PAD_GPIO1_IO00 = IOMUXC_MUX_ALT5;
+  IOMUXC_SW_PAD_CTL_PAD_GPIO1_IO00 = 0x5; //
+
+  /* Configure I2C4_SCL to control PCIe CLKREQ_B PAD */
+  IOMUXC_SW_MUX_CTL_PAD_I2C4_SCL = IOMUXC_MUX_SION_ENABLED | IOMUXC_MUX_ALT2;
+  IOMUXC_SW_PAD_CTL_PAD_I2C4_SCL = 0x76; // IOMUXC_PAD_PUE_ENABLE | IOMUXC_PAD_ODE_ENABLED;
+  IOMUXC_PCIE1_CLKREQ_B_SELECT_INPUT = 0x00;
+
+  /* Configure NAND_DATA04 as GPIO to control PCIe WL_nPERST PAD */
+  // reset-gpio
+  IOMUXC_SW_MUX_CTL_PAD_NAND_DATA04 = IOMUXC_MUX_ALT5;
+  IOMUXC_SW_PAD_CTL_PAD_NAND_DATA04 = 0x16; 
+  GPIO3_DR &= ~(0x01 << 10);                    /* Set the pad to the low level */
+  GPIO3_GDIR |= (0x01 << 10);                   /* Set output direction */
+
+  /* Configure NAND_DATA05 to control PCIe WL_REG_ON PAD */
+  // dis-gpio)
+  IOMUXC_SW_MUX_CTL_PAD_NAND_DATA05 = IOMUXC_MUX_ALT5;
+  IOMUXC_SW_PAD_CTL_PAD_NAND_DATA05 = 0x16; 
+  GPIO3_DR |= (0x01 << 11);                     /* Set the pad to the high level */
+  GPIO3_GDIR |= (0x01 << 11);                   /* Set output direction */
+
+#if 0
   /* Configure NAND_DQS as GPIO to control PCIe WL_nWAKE PAD */
   IOMUXC_SW_MUX_CTL_PAD_NAND_DQS = IOMUXC_MUX_ALT5;
   GPIO3_GDIR &= ~(0x01 << 14);                   /* Set input direction */
@@ -271,6 +308,7 @@ VOID PcieInit ()
   IOMUXC_SW_MUX_CTL_PAD_UART4_TXD = IOMUXC_MUX_ALT5;
   GPIO5_DR |= (0x01 << 29);                     /* Set the pad to the high level */
   GPIO5_GDIR |= (0x01 << 29);                   /* Set output direction */
+#endif
 #endif
 #if FixedPcdGet32(PcdPcie2Enable)
   /* Disable PCIE_CTRL clock root */
@@ -287,6 +325,23 @@ VOID PcieInit ()
   /* Enable PCIE_CTRL clock root */
   CCM_CCGR_SET(100) = 0x03;
 
+#if 0
+	MX8MQ_IOMUXC_I2C4_SDA_PCIE2_CLKREQ_B	0x76 /* open drain, pull up */
+	MX8MQ_IOMUXC_NAND_WP_B_GPIO3_IO18       0x19 /* APEX_SYS_RST_L */
+#endif
+  /* Configure I2C4_SDAS to control PCIe CLKREQ_B PAD */
+  IOMUXC_SW_MUX_CTL_PAD_I2C4_SDA = IOMUXC_MUX_SION_ENABLED | IOMUXC_MUX_ALT2;
+  IOMUXC_SW_PAD_CTL_PAD_I2C4_SDA = 0x76; // IOMUXC_PAD_PUE_ENABLE | IOMUXC_PAD_ODE_ENABLED;
+  IOMUXC_PCIE2_CLKREQ_B_SELECT_INPUT = 0x00;
+
+  /* configure APEX_SYS_RST_L */
+  /* Configure NAND_WP_B as GPIO to control PCIe WL_nPERST PAD */
+  IOMUXC_SW_MUX_CTL_PAD_NAND_WP_B = IOMUXC_MUX_ALT5;
+  IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B = 0x19;
+  GPIO3_DR &= ~(0x01 << 18);                    /* Set the pad to the low level */
+  GPIO3_GDIR |= (0x01 << 18);                   /* Set output direction */
+
+#if 0
   /* Configure ECSPI2_MOSI as GPIO to control PCIe nWAKE PAD */
   IOMUXC_SW_MUX_CTL_PAD_ECSPI2_MOSI = IOMUXC_MUX_ALT5;
   GPIO5_GDIR &= ~(0x01 << 7);                   /* Set input direction */
@@ -300,6 +355,7 @@ VOID PcieInit ()
   IOMUXC_SW_MUX_CTL_PAD_ECSPI2_SCLK = IOMUXC_MUX_ALT5;
   GPIO5_DR |= (0x01 << 10);                     /* Set the pad to the high level */
   GPIO5_GDIR |= (0x01 << 10);                   /* Set output direction */
+#endif
 #endif
 }
 #endif
