@@ -20,7 +20,7 @@
 #endif
 
 // Set to 1 for PCIe driver debug print enable
-#define PCIE_DEBUG              0
+#define PCIE_DEBUG              1
 
 #if PCIE_DEBUG
   #define PCIE_DEBUG_PRINT(TYPE,OUT,...) DebugPrint(TYPE, "iMX8PCIe: " OUT, ##__VA_ARGS__)

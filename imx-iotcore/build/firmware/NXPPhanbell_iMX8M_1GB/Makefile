@@ -1,0 +1,23 @@
+IMX8_TARGET=NXPPhanbell_iMX8M_4GB
+
+UBOOT_CONFIG=imx8mq_Phanbell_nt_defconfig
+
+EDK2_DSC=MCIMX8M_Phanbell_4GB
+EDK2_PLATFORM=NXP/MCIMX8M_Phanbell_4GB
+EDK2_DEBUG_RELEASE=RELEASE
+
+FTPM_CRYPTO_PROVIDER= CFG_FTPM_USE_WOLF=n 
+AUTHVARS_CRYPTO_PROVIDER= CFG_AUTHVARS_USE_WOLF=n
+
+UBOOT_OPTEE_ITS=uboot_optee_unsigned.its
+UEFI_ITS=uefi_unsigned.its
+
+all: imx8_build
+
+# include ../Common.mk
+include ../imx8.mk
+
+.PHONY: $(OPTEE)
+$(OPTEE):
+	$(MAKE) -C $(OPTEE_ROOT) O=$(OPTEE_OUT) PLATFORM=imx PLATFORM_FLAVOR=mx8mqevk \
+	  $(OPTEE_FLAGS_IMX8)

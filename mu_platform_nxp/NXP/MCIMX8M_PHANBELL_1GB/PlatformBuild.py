@@ -80,7 +80,7 @@ class PlatformBuilder(UefiBuilder):
         # # Disable the USB stack by default. It currently has issues and need to be taken care of
         self.env.SetValue("BLD_*_CONFIG_USB", "FALSE", "currently has issues")
         # # Disable the PCIexpress stack by default. Enable on demand.
-        self.env.SetValue("BLD_*_CONFIG_PCIE", "FALSE", "Off by default")
+        self.env.SetValue("BLD_*_CONFIG_PCIE", "TRUE", "On by default")
         # # States whether OPTEE boot flow is in effect or not. This has the following
         # # implications:
         # # - OPTEE must have been loaded by ATF.

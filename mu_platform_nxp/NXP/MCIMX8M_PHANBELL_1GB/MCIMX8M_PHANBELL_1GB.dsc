@@ -156,11 +156,11 @@
   giMX8TokenSpaceGuid.PcdPcie1DeviceMemorySize|0x07F00000
   giMX8TokenSpaceGuid.PcdPcie1DeviceConfigBase|0x1FF00000
   giMX8TokenSpaceGuid.PcdPcie1DeviceConfigSize|0x00080000
-  giMX8TokenSpaceGuid.PcdPcie1InternalRefClock|FALSE
+  giMX8TokenSpaceGuid.PcdPcie1InternalRefClock|TRUE
   giMX8TokenSpaceGuid.PcdPcie1MaxLinkSpeed|1
   giMX8TokenSpaceGuid.PcdPcie1ResetGpio|TRUE
-  giMX8TokenSpaceGuid.PcdPcie1ResetGpioBankNumber|5
-  giMX8TokenSpaceGuid.PcdPcie1ResetGpioIoNumber|28
+  giMX8TokenSpaceGuid.PcdPcie1ResetGpioBankNumber|3
+  giMX8TokenSpaceGuid.PcdPcie1ResetGpioIoNumber|10
   #
   # PCIe 2 Host config space is fixed at 0x33C00000. The memory range from
   # 0x20000000 - 0x28000000 is assigned for PCIe 2. The memory layout defined
@@ -177,8 +177,8 @@
   giMX8TokenSpaceGuid.PcdPcie2InternalRefClock|FALSE
   giMX8TokenSpaceGuid.PcdPcie2MaxLinkSpeed|1
   giMX8TokenSpaceGuid.PcdPcie2ResetGpio|TRUE
-  giMX8TokenSpaceGuid.PcdPcie2ResetGpioBankNumber|5
-  giMX8TokenSpaceGuid.PcdPcie2ResetGpioIoNumber|12
+  giMX8TokenSpaceGuid.PcdPcie2ResetGpioBankNumber|3
+  giMX8TokenSpaceGuid.PcdPcie2ResetGpioIoNumber|18
 
   ## SBSA Watchdog Count
 !ifndef DISABLE_SBSA_WATCHDOG
