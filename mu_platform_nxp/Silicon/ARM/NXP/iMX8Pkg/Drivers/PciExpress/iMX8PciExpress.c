@@ -380,6 +380,7 @@ EFI_STATUS PcieSetupInitSetting (
   } else {
     PCIE_INFO("PCIe%d configured with external reference clock.\n", PcieDeviceDataPtr->PcieIndex);
 #if defined(CPU_IMX8MM)
+    // IMX8MM only has one PCI controller, so no need to use PcieIndex
     IOMUXC_GPR_GPR14 &= ~(IOMUXC_GPR_GPR14_GPR_PCIE1_PHY_I_AUX_EN_OVERRIDE_EN_MASK);
     /* Selects reference clock from SOC PLL (pll_refclk_from_syspll) */
     IOMUXC_GPR_GPR14 |= IOMUXC_GPR_GPR14_GPR_PCIE1_PHY_FUNC_I_PLL_REF_CLK_SEL(0x03);
@@ -393,7 +394,6 @@ EFI_STATUS PcieSetupInitSetting (
     /* PCIe PHy block reset */
     IOMUXC_GPR_GPR14 |= IOMUXC_GPR_GPR14_GPR_PCIE1_PHY_FUNC_I_CMN_RSTN_MASK;
 #elif defined(CPU_IMX8MQ)
-    IOMUXC_GPR_GPR14 |= IOMUXC_GPR_GPR14_GPR_PCIE1_PHY_FUNC_I_CMN_RSTN_MASK;
     if (PcieDeviceDataPtr->PcieIndex == 0) {
       IOMUXC_GPR_GPR14 |= IOMUXC_GPR_GPR_PCIE1_REF_USE_PAD_MASK;
     } else {
@@ -1222,6 +1222,14 @@ EFI_STATUS PcieInitialize (
       goto Exit;
     }
 
+    PCIE_MISC_CONTROL_1_OFF_REG(PcieDeviceDataPtr->PcieMemMap) |= PCIE_MISC_CONTROL_1_OFF_DBI_RO_WR_EN_MASK;
+
+    /* Configure L1 exit latency to 64us before starting link up */
+    PCIE_LINK_CAPABILITIES_REG_REG(PcieDeviceDataPtr->PcieMemMap) =
+                                ((PCIE_LINK_CAPABILITIES_REG_REG(PcieDeviceDataPtr->PcieMemMap) &
+                                ~(PCIE_LINK_CAPABILITIES_REG_PCIE_CAP_L1_EXIT_LATENCY_MASK )) |
+                                PCIE_LINK_CAPABILITIES_REG_PCIE_CAP_L1_EXIT_LATENCY(0x06));
+
     // Very important to wait for Pcie PHY to settle here or the controller
     // behaviour becomes unpredictable.
     gBS->Stall(50000);
@@ -1298,6 +1306,9 @@ EFI_STATUS PcieInitialize (
           PCIE_LINK_CONTROL_LINK_STATUS_REG_PCIE_CAP_LINK_SPEED_SHIFT));
 
     PcieSetupiAtuSettings (PcieDeviceDataPtr);
+
+    // BUGBUG: don't enumerate resources in UEFI, let Windows do it.
+    goto Exit;
 
     // Start scanning from bus 0 onward
     Status = PcieSimpleScanBusAndAssignResource (PcieDeviceDataPtr, 0);

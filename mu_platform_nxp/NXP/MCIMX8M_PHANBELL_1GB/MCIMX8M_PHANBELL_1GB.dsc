@@ -175,7 +175,7 @@
   giMX8TokenSpaceGuid.PcdPcie2DeviceConfigBase|0x27F00000
   giMX8TokenSpaceGuid.PcdPcie2DeviceConfigSize|0x00080000
   giMX8TokenSpaceGuid.PcdPcie2InternalRefClock|FALSE
-  giMX8TokenSpaceGuid.PcdPcie2MaxLinkSpeed|1
+  giMX8TokenSpaceGuid.PcdPcie2MaxLinkSpeed|2
   giMX8TokenSpaceGuid.PcdPcie2ResetGpio|TRUE
   giMX8TokenSpaceGuid.PcdPcie2ResetGpioBankNumber|3
   giMX8TokenSpaceGuid.PcdPcie2ResetGpioIoNumber|18
