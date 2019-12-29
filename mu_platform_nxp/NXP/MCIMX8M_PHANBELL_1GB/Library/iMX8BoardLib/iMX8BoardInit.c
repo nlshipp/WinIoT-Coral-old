@@ -325,6 +325,12 @@ VOID PcieInit ()
   /* Enable PCIE_CTRL clock root */
   CCM_CCGR_SET(100) = 0x03;
 
+  /* enable google apex module GPIO3_IO15 */
+  IOMUXC_SW_MUX_CTL_PAD_NAND_RE_B = IOMUXC_MUX_ALT5;
+  IOMUXC_SW_PAD_CTL_PAD_NAND_RE_B = 0x76;
+  GPIO3_DR |= (0x01 << 15);      /* Set the pad to the high level */
+  GPIO3_GDIR |= (0x01 << 15);    /* Set output direction */
+
 #if 0
 	MX8MQ_IOMUXC_I2C4_SDA_PCIE2_CLKREQ_B	0x76 /* open drain, pull up */
 	MX8MQ_IOMUXC_NAND_WP_B_GPIO3_IO18       0x19 /* APEX_SYS_RST_L */
@@ -337,7 +343,7 @@ VOID PcieInit ()
   /* configure APEX_SYS_RST_L */
   /* Configure NAND_WP_B as GPIO to control PCIe WL_nPERST PAD */
   IOMUXC_SW_MUX_CTL_PAD_NAND_WP_B = IOMUXC_MUX_ALT5;
-  IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B = 0x19;
+  IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B = 0x16;
   GPIO3_DR &= ~(0x01 << 18);                    /* Set the pad to the low level */
   GPIO3_GDIR |= (0x01 << 18);                   /* Set output direction */
 
