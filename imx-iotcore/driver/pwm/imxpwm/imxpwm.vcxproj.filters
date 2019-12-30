@@ -65,6 +65,9 @@
     <ClCompile Include="isr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\shared\acpi\acpiutil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">
@@ -72,6 +75,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <PkgGen Include="NXP.iMX6Q.imxpwm.pkg.xml" />
+    <PkgGen Include="imxpwm.wm.xml" />
   </ItemGroup>
 </Project>

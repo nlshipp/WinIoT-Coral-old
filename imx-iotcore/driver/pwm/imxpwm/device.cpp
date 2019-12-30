@@ -19,7 +19,7 @@
 
 #include "imxpwmhw.hpp"
 #include "imxpwm.hpp"
-
+#include "acpiutil.hpp"
 #include "trace.h"
 #include "device.tmh"
 
@@ -122,7 +122,80 @@ ImxPwmEvtDevicePrepareHardware (
         return STATUS_INSUFFICIENT_RESOURCES;
     }
 
-    return STATUS_SUCCESS;
+    // Pull optional Pwm-SchematicName value from ACPI _DSD table and publish as SchematicName property
+    DEVICE_OBJECT* pdoPtr = WdfDeviceWdmGetPhysicalDevice(WdfDevice);
+    NT_ASSERT(pdoPtr != nullptr);
+
+    ACPI_EVAL_OUTPUT_BUFFER *dsdBufferPtr = nullptr;
+    NTSTATUS status;
+
+    status = AcpiQueryDsd(pdoPtr, &dsdBufferPtr);
+    if (!NT_SUCCESS(status))
+    {
+        IMXPWM_LOG_ERROR(
+            "AcpiQueryDsd() failed with error %!STATUS!",
+            status);
+        status = STATUS_SUCCESS;
+        goto Cleanup;
+    }
+
+    const ACPI_METHOD_ARGUMENT UNALIGNED* devicePropertiesPkgPtr;
+    status = AcpiParseDsdAsDeviceProperties(dsdBufferPtr, &devicePropertiesPkgPtr);
+    if (!NT_SUCCESS(status)) {
+        IMXPWM_LOG_ERROR(
+            "AcpiParseDsdAsDeviceProperties() failed with error %!STATUS!",
+            status);
+        status = STATUS_SUCCESS;
+        goto Cleanup;
+    }
+
+    CHAR schematicNameA[64];
+    WCHAR schematicNameW[64];
+    UINT32 length = 0;
+    size_t wlen = 0;
+
+    status = AcpiDevicePropertiesQueryStringValue(
+        devicePropertiesPkgPtr,
+        "Pwm-SchematicName",
+        ARRAYSIZE(schematicNameA),
+        &length,
+        schematicNameA);
+    if (!NT_SUCCESS(status)) {
+        IMXPWM_LOG_ERROR(
+            "AcpiDevicePropertiesQueryStringValue(Pwm-SchematicName) failed with error %!STATUS!",
+            status);
+        status = STATUS_SUCCESS;
+        goto Cleanup;
+    }
+
+    status = RtlStringCbPrintfW(schematicNameW, ARRAYSIZE(schematicNameW) * sizeof(WCHAR), L"%S", schematicNameA);
+    if (!NT_SUCCESS(status)) {
+        IMXPWM_LOG_ERROR(
+            "RtlStringCbPrintfW(Pwm-SchematicName) failed with error %!STATUS!",
+            status);
+        goto Cleanup;
+    }
+    RtlStringCbLengthW(schematicNameW, ARRAYSIZE(schematicNameW) * sizeof(WCHAR), &wlen);
+    wlen += sizeof(WCHAR);
+
+    NT_ASSERT(wlen == (length * sizeof(WCHAR)));
+
+    status = IoSetDeviceInterfacePropertyData(
+        &deviceContextPtr->DeviceInterfaceSymlinkNameWsz,
+        &DEVPKEY_DeviceInterface_SchematicName,
+        LOCALE_NEUTRAL,
+        0, // Flags
+        DEVPROP_TYPE_STRING,
+        (ULONG)wlen,
+        schematicNameW);
+
+Cleanup:
+
+    if (dsdBufferPtr != nullptr) {
+        ExFreePoolWithTag(dsdBufferPtr, ACPI_TAG_EVAL_OUTPUT_BUFFER);
+    }
+
+    return status;
 }
 
 _Use_decl_annotations_

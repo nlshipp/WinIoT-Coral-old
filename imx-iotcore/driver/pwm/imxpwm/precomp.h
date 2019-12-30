@@ -7,5 +7,6 @@
 #include <devpkey.h>
 #include <ntintsafe.h>
 #include <ntstrsafe.h>
+#include <acpiioct.h>
 #include <pwm.h>
 #include <pwmutil.h>
