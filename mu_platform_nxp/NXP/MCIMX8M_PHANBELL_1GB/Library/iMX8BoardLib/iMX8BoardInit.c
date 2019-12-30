@@ -386,6 +386,21 @@ VOID PwmInit()
     IOMUXC_SW_MUX_CTL_PAD_GPIO1_IO01 = IOMUXC_MUX_ALT1;
     IOMUXC_SW_PAD_CTL_PAD_GPIO1_IO01 = (IOMUXC_SW_PAD_CTL_PAD_DSE(4) | /* Drive strength 85 Ohm @3.3V, 80 Ohm @2.5V, 75 Ohm @1.8V, 90 Ohm @1.2V */
                                         IOMUXC_SW_PAD_CTL_PAD_SRE(0)); /* Slow Frequency Slew Rate (50Mhz) */
+
+    /* Configure GPIO1_IO013 as PWM2_OUT */
+    IOMUXC_SW_MUX_CTL_PAD_GPIO1_IO13 = IOMUXC_MUX_ALT5;
+    IOMUXC_SW_PAD_CTL_PAD_GPIO1_IO13 = (IOMUXC_SW_PAD_CTL_PAD_DSE(4) | /* Drive strength 85 Ohm @3.3V, 80 Ohm @2.5V, 75 Ohm @1.8V, 90 Ohm @1.2V */
+                                        IOMUXC_SW_PAD_CTL_PAD_SRE(0)); /* Slow Frequency Slew Rate (50Mhz) */
+
+    /* Configure GPIO1_IO14 as PWM3_OUT */
+    IOMUXC_SW_MUX_CTL_PAD_GPIO1_IO14 = IOMUXC_MUX_ALT5;
+    IOMUXC_SW_PAD_CTL_PAD_GPIO1_IO14 = (IOMUXC_SW_PAD_CTL_PAD_DSE(4) | /* Drive strength 85 Ohm @3.3V, 80 Ohm @2.5V, 75 Ohm @1.8V, 90 Ohm @1.2V */
+                                        IOMUXC_SW_PAD_CTL_PAD_SRE(0)); /* Slow Frequency Slew Rate (50Mhz) */
+
+    /* Configure SAI3_MCLK as PWM4_OUT */
+    IOMUXC_SW_MUX_CTL_PAD_SAI3_MCLK = IOMUXC_MUX_ALT1;
+    IOMUXC_SW_PAD_CTL_PAD_SAI3_MCLK = (IOMUXC_SW_PAD_CTL_PAD_DSE(4) | /* Drive strength 85 Ohm @3.3V, 80 Ohm @2.5V, 75 Ohm @1.8V, 90 Ohm @1.2V */
+                                        IOMUXC_SW_PAD_CTL_PAD_SRE(0)); /* Slow Frequency Slew Rate (50Mhz) */
 }
 
 /**

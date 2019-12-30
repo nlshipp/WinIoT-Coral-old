@@ -26,6 +26,13 @@ Device (PWM1)
     MEMORY32FIXED (ReadWrite, 0x30660000, 0x10000, )
     Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive) { 113 }
   })
+
+  Name (_DSD, Package () {
+    ToUUID ("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+      Package () {
+        Package (2) {"Pwm-SchematicName", "PWM1"}
+      }
+  })
 }
 
 Device (PWM2)
@@ -40,6 +47,13 @@ Device (PWM2)
   Name (_CRS, ResourceTemplate () {
     MEMORY32FIXED (ReadWrite, 0x30670000, 0x10000, )
     Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive) { 114 }
+  })
+
+  Name (_DSD, Package () {
+    ToUUID ("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+      Package () {
+        Package (2) {"Pwm-SchematicName", "PWM2"}
+      }
   })
 }
 
@@ -56,6 +70,13 @@ Device (PWM3)
     MEMORY32FIXED (ReadWrite, 0x30680000, 0x10000, )
     Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive) { 115 }
   })
+
+  Name (_DSD, Package () {
+    ToUUID ("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+      Package () {
+        Package (2) {"Pwm-SchematicName", "PWM3"}
+      }
+  })
 }
 
 Device (PWM4)
@@ -70,5 +91,12 @@ Device (PWM4)
   Name (_CRS, ResourceTemplate () {
     MEMORY32FIXED (ReadWrite, 0x30690000, 0x10000, )
     Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive) { 116 }
+  })
+
+  Name (_DSD, Package () {
+    ToUUID ("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+      Package () {
+        Package (2) {"Pwm-SchematicName", "PWM4"}
+      }
   })
 }

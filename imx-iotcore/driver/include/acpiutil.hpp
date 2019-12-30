@@ -122,6 +122,15 @@ AcpiDevicePropertiesQueryIntegerValue<UINT32>(
     _In_z_ const CHAR* KeyNamePtr,
     _Out_ UINT32* Value);
 
+_IRQL_requires_max_(DISPATCH_LEVEL)
+NTSTATUS
+AcpiDevicePropertiesQueryStringValue(
+    _In_ const ACPI_METHOD_ARGUMENT UNALIGNED* DevicePropertiesPkgPtr,
+    _In_z_ const CHAR* KeyNamePtr,
+    _In_ UINT32 MaxLength,
+    _Out_ UINT32* OutLength,
+    _Out_writes_z_(MaxLength) PCHAR ValuePtr);
+
 _IRQL_requires_max_(APC_LEVEL)
 NTSTATUS
 AcpiQueryDsm(
