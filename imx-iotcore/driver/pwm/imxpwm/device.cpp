@@ -20,6 +20,7 @@
 #include "imxpwmhw.hpp"
 #include "imxpwm.hpp"
 #include "acpiutil.hpp"
+#include "ImxCpuRev.h"
 #include "trace.h"
 #include "device.tmh"
 
@@ -534,7 +535,16 @@ ImxPwmEvtDeviceAdd (
         // clock source and assume clock is properly configured.
         //
         deviceContextPtr->ClockSource = IMXPWM_PWMCR_CLKSRC(IMXPWM_DEFAULT_CLKSRC);
-        deviceContextPtr->ClockSourceFrequency = IMXPWM_DEFAULT_CLKSRC_FREQ;
+		switch (ImxGetSocType())
+		{
+		case IMX_SOC_MX8M:
+			deviceContextPtr->ClockSourceFrequency = IMXPWM_25MHZ_CLKSRC_FREQ;
+			break;
+		default:
+			deviceContextPtr->ClockSourceFrequency = IMXPWM_66MHZ_CLKSRC_FREQ;
+			break;
+		}
+
         deviceContextPtr->RovEventCounterCompare = IMXPWM_ROV_EVT_COUNTER_COMPARE;
 
         auto &info = deviceContextPtr->ControllerInfo;
