@@ -135,7 +135,7 @@ Device(RHPX)
     GpioIO(Shared, PullNone, 0, 0, IoRestrictionNone, "\\_SB.GPIO", 0, ResourceConsumer, , ) { 108 } // 3 * 32 + 12
     GpioInt(Edge, ActiveBoth, Shared, PullNone, 0, "\\_SB.GPIO",) { 108 }
 
-    // GPIO5_IO02 PAD_SAI_MCLK - Status/Power LED-G (PWM4)
+    // GPIO5_IO02 PAD_SAI3_MCLK - Status/Power LED-G (PWM4)
     GpioIO(Shared, PullNone, 0, 0, IoRestrictionNone, "\\_SB.GPIO", 0, ResourceConsumer, , ) { 130 } // 4 * 32 + 2
     GpioInt(Edge, ActiveBoth, Shared, PullNone, 0, "\\_SB.GPIO",) { 130 }
 
