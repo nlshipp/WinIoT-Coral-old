@@ -78,6 +78,15 @@ AcpiArgumentParseInteger(
     _In_ const ACPI_METHOD_ARGUMENT UNALIGNED* ArgumentPtr,
     _Out_ UINT32* ValuePtr);
 
+_IRQL_requires_same_
+NTSTATUS
+AcpiArgumentParseString(
+    _In_ const ACPI_METHOD_ARGUMENT UNALIGNED* ArgumentPtr,
+    _In_ UINT32 MaxLength,
+    _Out_ UINT32* OutLength,
+    _Out_writes_z_(MaxLength) PCHAR ValuePtr
+);
+
 _IRQL_requires_max_(APC_LEVEL)
 NTSTATUS
 AcpiFormatDsmFunctionNoParamsInputBuffer(
@@ -110,6 +119,13 @@ NTSTATUS
 AcpiOuputBufferGetNextArgument(
     _In_ const ACPI_EVAL_OUTPUT_BUFFER UNALIGNED* OutputBufferPtr,
     _Inout_ const ACPI_METHOD_ARGUMENT UNALIGNED** ArgumentPptr);
+
+_IRQL_requires_same_
+NTSTATUS
+AcpiDevicePropertiesQueryValue(
+    _In_ const ACPI_METHOD_ARGUMENT UNALIGNED* DevicePropertiesPkgPtr,
+    _In_z_ const CHAR* KeyNamePtr,
+    _Out_ const ACPI_METHOD_ARGUMENT UNALIGNED** ValuePtr);
 
 //
 // Internal Misc
@@ -165,14 +181,13 @@ AcpiQueryDsd(
     return STATUS_SUCCESS;
 }
 
-template<>
 _Use_decl_annotations_
 NTSTATUS
-AcpiDevicePropertiesQueryIntegerValue<UINT32>(
+AcpiDevicePropertiesQueryValue(
     const ACPI_METHOD_ARGUMENT UNALIGNED* DevicePropertiesPkgPtr,
     const CHAR* KeyNamePtr,
-    UINT32* ValuePtr
-    )
+    const ACPI_METHOD_ARGUMENT UNALIGNED** ValuePtr
+)
 {
     if (!ARGUMENT_PRESENT(DevicePropertiesPkgPtr)) {
         return STATUS_INVALID_PARAMETER_1;
@@ -193,7 +208,7 @@ AcpiDevicePropertiesQueryIntegerValue<UINT32>(
     NTSTATUS status;
     const ACPI_METHOD_ARGUMENT UNALIGNED* currentListEntryPtr = nullptr;
     ANSI_STRING keyNameStr;
-    __analysis_assume_nullterminated(KeyNamePtr);
+
     status = RtlInitAnsiStringEx(&keyNameStr, KeyNamePtr);
     if (!NT_SUCCESS(status)) {
         return status;
@@ -222,7 +237,7 @@ AcpiDevicePropertiesQueryIntegerValue<UINT32>(
             NT_ASSERT(status == STATUS_NO_MORE_ENTRIES);
             return STATUS_NOT_FOUND;
         }
-        
+
         //
         // Each element in the Device Properties package is a non-empty package
         // key/value pair
@@ -250,7 +265,7 @@ AcpiDevicePropertiesQueryIntegerValue<UINT32>(
         }
 
         ANSI_STRING currentKeyNameStr;
-        _Analysis_assume_nullterminated_(currentPairEntryPtr->Data);
+
         RtlInitAnsiStringEx(
             &currentKeyNameStr,
             reinterpret_cast<PCSZ>(currentPairEntryPtr->Data));
@@ -271,12 +286,96 @@ AcpiDevicePropertiesQueryIntegerValue<UINT32>(
         }
         NT_ASSERT(NT_SUCCESS(status));
 
-        status = AcpiArgumentParseInteger(currentPairEntryPtr, ValuePtr);
-        if (!NT_SUCCESS(status)) {
-            return status;
-        }
-
+        *ValuePtr = currentPairEntryPtr;
         break;
+    }
+
+    return STATUS_SUCCESS;
+}
+
+template<>
+_Use_decl_annotations_
+NTSTATUS
+AcpiDevicePropertiesQueryIntegerValue<UINT32>(
+    const ACPI_METHOD_ARGUMENT UNALIGNED* DevicePropertiesPkgPtr,
+    const CHAR* KeyNamePtr,
+    UINT32* ValuePtr
+    )
+{
+    if (!ARGUMENT_PRESENT(DevicePropertiesPkgPtr)) {
+        return STATUS_INVALID_PARAMETER_1;
+    }
+
+    if (!ARGUMENT_PRESENT(KeyNamePtr)) {
+        return STATUS_INVALID_PARAMETER_2;
+    }
+
+    if (!ARGUMENT_PRESENT(ValuePtr)) {
+        return STATUS_INVALID_PARAMETER_3;
+    }
+
+    if (DevicePropertiesPkgPtr->Type != ACPI_METHOD_ARGUMENT_PACKAGE) {
+        return STATUS_ACPI_INVALID_ARGTYPE;
+    }
+
+    NTSTATUS status;
+    const ACPI_METHOD_ARGUMENT UNALIGNED* currentPairEntryPtr = nullptr;
+
+    status = AcpiDevicePropertiesQueryValue(DevicePropertiesPkgPtr, KeyNamePtr, &currentPairEntryPtr);
+    if (!NT_SUCCESS(status)) {
+        return status;
+    }
+
+    status = AcpiArgumentParseInteger(currentPairEntryPtr, ValuePtr);
+    if (!NT_SUCCESS(status)) {
+        return status;
+    }
+
+    return STATUS_SUCCESS;
+}
+
+
+_Use_decl_annotations_
+NTSTATUS
+AcpiDevicePropertiesQueryStringValue(
+    const ACPI_METHOD_ARGUMENT UNALIGNED* DevicePropertiesPkgPtr,
+    const CHAR* KeyNamePtr,
+    UINT32 MaxLength,
+    UINT32* OutLength,
+    PCHAR ValuePtr
+    )
+{
+    if (!ARGUMENT_PRESENT(DevicePropertiesPkgPtr)) {
+        return STATUS_INVALID_PARAMETER_1;
+    }
+
+    if (!ARGUMENT_PRESENT(KeyNamePtr)) {
+        return STATUS_INVALID_PARAMETER_2;
+    }
+
+    if (!ARGUMENT_PRESENT(OutLength)) {
+        return STATUS_INVALID_PARAMETER_4;
+    }
+
+    if (!ARGUMENT_PRESENT(ValuePtr)) {
+        return STATUS_INVALID_PARAMETER_5;
+    }
+
+    if (DevicePropertiesPkgPtr->Type != ACPI_METHOD_ARGUMENT_PACKAGE) {
+        return STATUS_ACPI_INVALID_ARGTYPE;
+    }
+
+    NTSTATUS status;
+    const ACPI_METHOD_ARGUMENT UNALIGNED* currentPairEntryPtr = nullptr;
+
+    status = AcpiDevicePropertiesQueryValue(DevicePropertiesPkgPtr, KeyNamePtr, &currentPairEntryPtr);
+    if (!NT_SUCCESS(status)) {
+        return status;
+    }
+
+    status = AcpiArgumentParseString(currentPairEntryPtr, MaxLength, OutLength, ValuePtr);
+    if (!NT_SUCCESS(status)) {
+        return status;
     }
 
     return STATUS_SUCCESS;
@@ -888,6 +987,33 @@ AcpiArgumentParseInteger(
     }
 
     *ValuePtr = static_cast<UINT32>(ArgumentPtr->Argument);
+    return STATUS_SUCCESS;
+}
+
+_Use_decl_annotations_
+NTSTATUS
+AcpiArgumentParseString(
+    const ACPI_METHOD_ARGUMENT UNALIGNED* ArgumentPtr,
+    UINT32 MaxLength,
+    UINT32* OutLength,
+    PCHAR ValuePtr
+)
+{
+    NT_ASSERT(ARGUMENT_PRESENT(ArgumentPtr));
+    NT_ASSERT(ARGUMENT_PRESENT(OutLength));
+    NT_ASSERT(ARGUMENT_PRESENT(ValuePtr));
+
+    C_ASSERT(sizeof(UINT32) == sizeof(ULONG));
+    if (ArgumentPtr->Type != ACPI_METHOD_ARGUMENT_STRING) {
+        return STATUS_ACPI_INVALID_ARGTYPE;
+    }
+
+    *OutLength = ArgumentPtr->DataLength;
+    if (ArgumentPtr->DataLength > MaxLength) {
+        return STATUS_BUFFER_TOO_SMALL;
+    }
+
+    RtlCopyMemory(ValuePtr, ArgumentPtr->Data, ArgumentPtr->DataLength);
     return STATUS_SUCCESS;
 }
 
