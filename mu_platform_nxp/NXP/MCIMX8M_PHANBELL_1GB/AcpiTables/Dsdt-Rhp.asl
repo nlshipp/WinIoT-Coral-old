@@ -139,6 +139,10 @@ Device(RHPX)
     GpioIO(Shared, PullNone, 0, 0, IoRestrictionNone, "\\_SB.GPIO", 0, ResourceConsumer, , ) { 130 } // 4 * 32 + 2
     GpioInt(Edge, ActiveBoth, Shared, PullNone, 0, "\\_SB.GPIO",) { 130 }
 
+    // GPIO5_IO04 PAD_SPDIF_RX - Audio J_DETECT
+    GpioIO(Shared, PullNone, 0, 0, IoRestrictionNone, "\\_SB.GPIO", 0, ResourceConsumer, , ) { 132 } // 4 * 32 + 4
+    GpioInt(Edge, ActiveBoth, Shared, PullNone, 0, "\\_SB.GPIO",) { 132 }
+
     // GPIO5_IO06 PAD_ECSPI1_SCLK - J15 pin 23
     GpioIO(Shared, PullNone, 0, 0, IoRestrictionNone, "\\_SB.GPIO", 0, ResourceConsumer, , ) { 134 } // 4 * 32 + 6
     GpioInt(Edge, ActiveBoth, Shared, PullNone, 0, "\\_SB.GPIO",) { 134 }
