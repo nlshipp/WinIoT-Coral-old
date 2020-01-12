@@ -535,15 +535,15 @@ ImxPwmEvtDeviceAdd (
         // clock source and assume clock is properly configured.
         //
         deviceContextPtr->ClockSource = IMXPWM_PWMCR_CLKSRC(IMXPWM_DEFAULT_CLKSRC);
-		switch (ImxGetSocType())
-		{
-		case IMX_SOC_MX8M:
-			deviceContextPtr->ClockSourceFrequency = IMXPWM_25MHZ_CLKSRC_FREQ;
-			break;
-		default:
-			deviceContextPtr->ClockSourceFrequency = IMXPWM_66MHZ_CLKSRC_FREQ;
-			break;
-		}
+        switch (ImxGetSocType())
+        {
+        case IMX_SOC_MX8M:
+            deviceContextPtr->ClockSourceFrequency = IMXPWM_25MHZ_CLKSRC_FREQ;
+            break;
+        default:
+            deviceContextPtr->ClockSourceFrequency = IMXPWM_66MHZ_CLKSRC_FREQ;
+            break;
+        }
 
         deviceContextPtr->RovEventCounterCompare = IMXPWM_ROV_EVT_COUNTER_COMPARE;
 
