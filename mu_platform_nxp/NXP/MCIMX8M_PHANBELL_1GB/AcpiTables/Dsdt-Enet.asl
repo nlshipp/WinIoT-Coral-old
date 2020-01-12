@@ -81,20 +81,13 @@ Device (NET1) {
   }
   Name (_DSD, Package () {
     ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
-    Package () { // ATHEROS AR8031
+    Package () { // Realtek RTL8211F
       Package (2) {"MDIOBusController_InputClk_kHz", 266000},
       Package (2) {"PhyAddress",                     0x00},
       Package (2) {"PhyInterafceType",               0x00},  // RGMII, default value
       Package (2) {"PhyMaxMDIOBusClock_kHz",         15000},
       Package (2) {"PhyMinSTAHoldTime_ns",           10},
       Package (2) {"PhyDisablePreamble",             0},
-      Package (2) {"ConfigCmds", Package () {
-                                  //  Enable GTX_CLK delay
-                                  MII_WRITE_COMMAND(MII_REG_AR8031_DP_ADDR, 0x0005),// Choose SerDes Test and System Mode Control
-                                  MII_WRITE_COMMAND(MII_REG_AR8031_DP_RW,   0x0100),// Select 1 - RGMII Tx Clock Delay Enable
-                                  ///  Specific
-                                  MII_WRITE_COMMAND(MII_REG_AR8031_SS,      0x000C),// Smart speed off
-                                  ENET_MII_END}}
     }
   })
 }
