@@ -172,6 +172,11 @@ EvtAlc5645DevicePrepareHardware(
 
                         if (NT_SUCCESS(status))
                         {
+                           status = CodecInitialize(deviceContext);
+                        }
+
+                        if (NT_SUCCESS(status))
+                        {
                            status = CodecInitializeHeadphoneOutJack(deviceContext);
                         }
                      }

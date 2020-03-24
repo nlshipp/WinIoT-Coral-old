@@ -13,6 +13,10 @@ Environment:
 #pragma once
 
 
+NTSTATUS
+CodecInitialize(
+    _In_ PDEVICE_CONTEXT DeviceContext
+    );
 
 NTSTATUS
 CodecInitializeHeadphoneOutJack(
