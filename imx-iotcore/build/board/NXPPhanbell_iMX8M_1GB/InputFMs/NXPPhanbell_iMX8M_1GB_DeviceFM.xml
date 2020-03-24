@@ -36,6 +36,11 @@
           <FeatureID>IMX_DRIVERS</FeatureID>
         </FeatureIDs>
       </PackageFile>
+      <PackageFile Path="%BSPPKG_DIR%" Name="NXP.iMX.alc5645codec.cab">
+        <FeatureIDs>
+          <FeatureID>IMX_DRIVERS</FeatureID>
+        </FeatureIDs>
+      </PackageFile>
       <PackageFile Path="%BSPPKG_DIR%" Name="NXP.iMX.imxuart.cab">
         <FeatureIDs>
           <FeatureID>IMX_DRIVERS</FeatureID>
