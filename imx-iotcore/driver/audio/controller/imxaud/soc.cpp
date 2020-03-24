@@ -311,7 +311,7 @@ CSoc::SetupClocks()
     TransmitConfigReg2.MasterClockSelect = 1;
 #endif
     TransmitConfigReg2.BitClockDirection = 1; // internal bit clock
-    TransmitConfigReg2.BitClockParity = 1;
+    TransmitConfigReg2.BitClockPolarity = 1;
     
 
     ReceiveConfigReg2.SynchronousMode = 0x1;  // Synchronous Mode, dependant on Transmitter.

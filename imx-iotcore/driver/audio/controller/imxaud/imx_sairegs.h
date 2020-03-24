@@ -130,7 +130,7 @@ typedef union {
         ULONG BitClockDivide : 8;       // bit 0:7
         ULONG Reserved0 : 16;           // bit 8:23
         ULONG BitClockDirection : 1;    // bit 24
-        ULONG BitClockParity : 1;       // bit 25
+        ULONG BitClockPolarity : 1;     // bit 25
         ULONG MasterClockSelect : 2;    // bit 26:27
         ULONG BitClockInput : 1;        // bit 28
         ULONG BitClockSwap : 1;         // bit 29
