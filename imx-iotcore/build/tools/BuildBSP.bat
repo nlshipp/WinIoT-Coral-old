@@ -150,6 +150,10 @@ copy %BUILD_ROOT%\Wm8731Lcodec\* %PKG_ROOT%\Audio\ >NUL
 if errorlevel 1 (set FAILURE=wm8731L & goto ERROR)
 copy %REPO_ROOT%\driver\audio\codec\wm8731L\wm8731Lcodec.wm.xml %PKG_ROOT%\Audio\ >NUL
 
+copy %BUILD_ROOT%\alc5645codec\* %PKG_ROOT%\Audio\ >NUL
+if errorlevel 1 (set FAILURE=alc5645 & goto ERROR)
+copy %REPO_ROOT%\driver\audio\codec\alc5645\wm8731Lcodec.wm.xml %PKG_ROOT%\Audio\ >NUL
+
 :: Copy HAL Extension Packages
 echo Copying HAL Extension Packages to %PKG_ROOT%
 
