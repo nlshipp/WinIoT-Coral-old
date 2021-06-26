@@ -15,20 +15,22 @@ Abstract:
 // Default pin instances.
 #define MAX_INPUT_SYSTEM_STREAMS        1
 
+#if 0
 // Wave Topology nodes
 enum
 {
     KSNODE_WAVE_AUDIO_ENGINE = 0
 };
+#endif
 
-// Wave pins
+// Wave pins - SpeakerHpWaveMiniportPins
 enum
 {
     KSPIN_WAVE_RENDER_SINK_SYSTEM = 0,
     KSPIN_WAVE_RENDER_SOURCE,
 };
 
-// Topology pins.
+// Topology pins - SpeakerHpTopoMiniportPins
 enum
 {
     KSPIN_TOPO_WAVEOUT_SOURCE = 0,
@@ -39,7 +41,7 @@ enum
 // New defines for the mic in
 //----------------------------------------------------
 
-// Wave pins
+// Wave pins - MicInWaveMiniportPins
 enum 
 {
     KSPIN_WAVE_BRIDGE = 0,
@@ -52,19 +54,21 @@ enum
     KSNODE_WAVE_ADC = 0
 };
 
-// topology pins.
+// topology pins - MicInTopoMiniportPins
 enum
 {
     KSPIN_TOPO_MIC_ELEMENTS,
     KSPIN_TOPO_BRIDGE
 };
 
+#if 0
 // topology nodes.
 enum
 {
     KSNODE_TOPO_VOLUME,
     KSNODE_TOPO_MUTE
 };
+#endif
 
 // data format attribute range definitions.
 static
@@ -87,5 +91,4 @@ KSATTRIBUTE_LIST PinDataRangeAttributeList =
     ARRAYSIZE(PinDataRangeAttributes),
     PinDataRangeAttributes,
 };
-
 

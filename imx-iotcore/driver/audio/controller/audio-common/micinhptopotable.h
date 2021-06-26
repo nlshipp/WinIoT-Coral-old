@@ -105,7 +105,7 @@ static
 PCCONNECTION_DESCRIPTOR MicInTopoMiniportConnections[] =
 {
   //  FromNode,                     FromPin,                        ToNode,                      ToPin
-  {   PCFILTER_NODE,                KSPIN_TOPO_MIC_ELEMENTS,            PCFILTER_NODE,               KSPIN_TOPO_BRIDGE, }
+  {   PCFILTER_NODE,                KSPIN_TOPO_MIC_ELEMENTS,        PCFILTER_NODE,               KSPIN_TOPO_BRIDGE, }
 };
 
 
@@ -146,6 +146,4 @@ PCFILTER_DESCRIPTOR MicInTopoMiniportFilterDescriptor =
     0,                                            // CategoryCount
     NULL                                          // Categories
 };
-
-    
 

@@ -91,6 +91,21 @@ PENDPOINT_MINIPAIR  g_RenderEndpoints[] =
 
 #define g_cRenderEndpoints  (SIZEOF_ARRAY(g_RenderEndpoints))
 
+//
+// Capture miniports.
+//
+
+/*********************************************************************
+* Topology/Wave bridge connection for mic in                         *
+*                                                                    *
+*              +------+    +------+                                  *
+*              | Topo |    | Wave |                                  *
+*              |      |    |      |                                  *
+*  Mic in  --->|0    1|===>|0    1|---> Capture Host Pin             *
+*              |      |    |      |                                  *
+*              +------+    +------+                                  *
+*********************************************************************/
+
 static
 PHYSICALCONNECTIONTABLE MicInTopologyPhysicalConnections[] =
 {
@@ -112,7 +127,7 @@ ENDPOINT_MINIPAIR MicInMiniports =
     L"WaveMicIn",                                       // make sure this name matches with KSNAME_WaveMicIn in the inf's [Strings] section
     CreateMiniportWaveRTIMXWAV,
     &MicInWaveMiniportFilterDescriptor,
-    1,                                             // DeviceMaxChannels
+    MICIN_DEVICE_MAX_CHANNELS,
     MicInPinDeviceFormatsAndModes,
     SIZEOF_ARRAY(MicInPinDeviceFormatsAndModes),
     MicInTopologyPhysicalConnections,

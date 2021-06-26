@@ -24,7 +24,7 @@ Abstract:
 static 
 KSDATAFORMAT_WAVEFORMATEXTENSIBLE SpeakerHpHostPinSupportedDeviceFormats[] =
 {
-    { // 2
+    { // 0
         {
             sizeof(KSDATAFORMAT_WAVEFORMATEXTENSIBLE),
             0,
@@ -108,7 +108,6 @@ KSDATARANGE_AUDIO SpeakerHpPinDataRangesStream[] =
     },
 };
 
-
 static
 PKSDATARANGE SpeakerHpPinDataRangePointersStream[] =
 {
@@ -185,12 +184,42 @@ PCPIN_DESCRIPTOR SpeakerHpWaveMiniportPins[] =
     },
 };
 
+//=============================================================================
+#if 0
+static
+PCNODE_DESCRIPTOR SpeakerHpWaveMiniportNodes[] =
+{
+    // KSNODE_WAVE_AUDIO_ENGINE
+    {
+        0,                          // Flags
+        NULL,                       // AutomationTable
+        &KSNODETYPE_AUDIO_ENGINE,   // Type  KSNODETYPE_AUDIO_ENGINE
+        NULL                        // Name
+    }
+};
+
+//=============================================================================
+//
+//                   ----------------------------      
+//                   |                          |      
+//  System Pin   0-->|   HW Audio Engine node   |--> 1 KSPIN_WAVE_RENDER_SOURCE      
+//                   |                          |      
 //                   ----------------------------       
 static
 PCCONNECTION_DESCRIPTOR SpeakerHpWaveMiniportConnections[] =
 {
+    // FromNode                 FromNodePin                        ToNode                      ToNodePin
+    { PCFILTER_NODE,            KSPIN_WAVE_RENDER_SINK_SYSTEM,     KSNODE_WAVE_AUDIO_ENGINE,   0 },
+    { KSNODE_WAVE_AUDIO_ENGINE, 1,                                 PCFILTER_NODE,              KSPIN_WAVE_RENDER_SOURCE },
+};
+#else
+static
+PCCONNECTION_DESCRIPTOR SpeakerHpWaveMiniportConnections[] =
+{
+    // FromNode                 FromNodePin                        ToNode                      ToNodePin
     { PCFILTER_NODE,            KSPIN_WAVE_RENDER_SINK_SYSTEM,     PCFILTER_NODE,              KSPIN_WAVE_RENDER_SOURCE },
 };
+#endif
 
 //=============================================================================
 static
@@ -216,8 +245,13 @@ PCFILTER_DESCRIPTOR SpeakerHpWaveMiniportFilterDescriptor =
     SIZEOF_ARRAY(SpeakerHpWaveMiniportPins),        // PinCount
     SpeakerHpWaveMiniportPins,                      // Pins
     sizeof(PCNODE_DESCRIPTOR),                      // NodeSize
-    0,       // NodeCount
-    NULL,                     // Nodes
+#if 0
+    SIZEOF_ARRAY(SpeakerHpWaveMiniportNodes),       // NodeCount
+    SpeakerHpWaveMiniportNodes,                     // Nodes
+#else
+    0,                                              // NodeCount
+    NULL,                                           // Nodes
+#endif
     SIZEOF_ARRAY(SpeakerHpWaveMiniportConnections), // ConnectionCount
     SpeakerHpWaveMiniportConnections,               // Connections
     0,                                              // CategoryCount

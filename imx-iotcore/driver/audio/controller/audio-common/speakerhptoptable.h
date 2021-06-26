@@ -36,7 +36,7 @@ PKSDATARANGE SpeakerHpTopoPinDataRangePointersBridge[] =
 static
 PCPIN_DESCRIPTOR SpeakerHpTopoMiniportPins[] =
 {
-  // KSPIN - topology filter in-pin
+  // KSPIN_TOPO_WAVEOUT_SOURCE - topology filter in-pin
   {
     0,
     0,
@@ -56,7 +56,7 @@ PCPIN_DESCRIPTOR SpeakerHpTopoMiniportPins[] =
       0                                                 // Reserved
     }
   },
-  // KSPIN - topology filter out-pin
+  // KSPIN_TOPO_LINEOUT_DEST - topology filter out-pin
   {
     0,
     0,

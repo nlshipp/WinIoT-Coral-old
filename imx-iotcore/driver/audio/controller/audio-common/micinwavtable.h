@@ -27,7 +27,7 @@ PropertyHandler_MicInTopoFilter
 static 
 KSDATAFORMAT_WAVEFORMATEXTENSIBLE MicInPinSupportedDeviceFormats[] =
 {
-    { // 2
+    { // 0
         {
             sizeof(KSDATAFORMAT_WAVEFORMATEXTENSIBLE),
             0,

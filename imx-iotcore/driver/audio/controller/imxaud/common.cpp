@@ -227,6 +227,7 @@ class CAdapterCommon :
         _In_ PWSTR Name
     );
 
+#if 0
     NTSTATUS InitializeMux(ULONG SsiPort, ULONG ExternalPort);
 
     _Must_inspect_result_
@@ -257,8 +258,7 @@ class CAdapterCommon :
     VOID StopDma();
 
     BOOLEAN HandleInterrupt();
-
-
+#endif
 };
 
 typedef struct _MINIPAIR_UNKNOWN
@@ -1983,6 +1983,7 @@ Return Value:
     return ntStatus;
 }
 
+#if 0 
 _Must_inspect_result_
 __drv_requiresIRQL(PASSIVE_LEVEL)
 NTSTATUS
@@ -2202,6 +2203,7 @@ OpenResourceHubTargetEnd:
 
     return Status;
 }
+#endif
 
 NTSTATUS 
 CAdapterCommon::RegisterStream

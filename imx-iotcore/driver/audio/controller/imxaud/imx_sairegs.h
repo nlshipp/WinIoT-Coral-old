@@ -298,7 +298,6 @@ typedef union {
     };
 } SAI_TRANSMIT_MASK_REGISTER, *PSAI_TRANSMIT_MASK_REGISTER;
 
-// TODO update RX registers for imx8m
 //
 // IMX7D: 13.8.4.10 SAI Receive Control Register (I2Sx_RCSR)
 //
@@ -326,11 +325,23 @@ typedef union {
         ULONG Reserved4 : 2;                    // bit 26:27
         ULONG BitClockEnable : 1;               // bit 28
         ULONG DebugEnable : 1;                  // bit 29
-        ULONG StopEnable : 1;                   // bit 30
+        ULONG StopEnable : 1;                   // bit 30 - iMX8M - reserved
         ULONG ReceiverEnable : 1;               // bit 31
     };
 } SAI_RECEIVE_CONTROL_REGISTER, *PSAI_RECEIVE_CONTROL_REGISTER;
 
+#ifdef _ARM64_
+//
+// IMX8M: 13.10.4.1.14.2 SAI Receive Configuration 1 Register (I2Sx_RCR1)
+//
+typedef union {
+    ULONG AsUlong;
+    struct {
+        ULONG ReceiveFifoWatermark : 7;     // bit 0:6
+        ULONG Reserved0 : 25;               // bit 7:31
+    };
+} SAI_RECEIVE_CONFIGURATION_REGISTER_1, *PSAI_RECEIVE_CONFIGURATION_REGISTER_1;
+#else
 //
 // IMX7D: 13.8.4.11 SAI Receive Configuration 1 Register (I2Sx_RCR1)
 //
@@ -341,6 +352,7 @@ typedef union {
         ULONG Reserved0 : 27;               // bit 5:31
     };
 } SAI_RECEIVE_CONFIGURATION_REGISTER_1, *PSAI_RECEIVE_CONFIGURATION_REGISTER_1;
+#endif
 
 //
 // IMX7D: 13.8.4.12 SAI Receive Configuration 2 Register (I2Sx_RCR2)
@@ -359,6 +371,20 @@ typedef union {
     };
 } SAI_RECEIVE_CONFIGURATION_REGISTER_2, *PSAI_RECEIVE_CONFIGURATION_REGISTER_2;
 
+#ifdef _ARM64_
+//
+// IMX8M: 13.10.4.1.16.2 SAI Receive Configuration 3 Register (I2Sx_RCR3)
+//
+typedef union {
+    ULONG AsUlong;
+    struct {
+        ULONG WordFlagConfiguration : 5;    // bit 0:4
+        ULONG Reserved0 : 11;               // bit 5:15
+        ULONG ReceiveChannelEnable : 8;     // bit 16:23
+        ULONG ChannelFifoReset : 8;         // bit 24:31
+    };
+} SAI_RECEIVE_CONFIGURATION_REGISTER_3, *PSAI_RECEIVE_CONFIGURATION_REGISTER_3;
+#else
 //
 // IMX7D: 13.8.4.13 SAI Receive Configuration 3 Register (I2Sx_RCR3)
 //
@@ -372,7 +398,32 @@ typedef union {
         ULONG Reserved2 : 8;                // bit 24:31
     };
 } SAI_RECEIVE_CONFIGURATION_REGISTER_3, *PSAI_RECEIVE_CONFIGURATION_REGISTER_3;
+#endif
 
+#ifdef _ARM64_
+//
+// IMX8M: 13.10.4.1.17.4 SAI Receive Configuration 4 Register (I2Sx_RCR4)
+//
+typedef union {
+    ULONG AsUlong;
+    struct {
+        ULONG FrameSyncDirection : 1;  // bit 0
+        ULONG FrameSyncPolarity : 1;   // bit 1
+        ULONG OnDemandMode : 1;        // bit 2
+        ULONG FrameSyncEarly : 1;      // bit 3
+        ULONG MSBFirst : 1;            // bit 4
+        ULONG Reserved1 : 3;           // bit 5:7
+        ULONG SyncWidth : 5;           // bit 8:12
+        ULONG Reserved2 : 3;           // bit 13:15
+        ULONG FrameSize : 5;           // bit 16:20
+        ULONG Reserved3 : 3;           // bit 21:23
+        ULONG FifoPackingMode : 2;     // bit 24:25
+        ULONG FifoCombineMode : 2;     // bit 26:27
+        ULONG FifoContinueOnError : 1; // bit 28
+        ULONG Reserved7 : 3;           // bit 29:31
+    };
+} SAI_RECEIVE_CONFIGURATION_REGISTER_4, *PSAI_RECEIVE_CONFIGURATION_REGISTER_4;
+#else
 //
 // IMX7D: 13.8.4.14 SAI Receive Configuration 4 Register (I2Sx_RCR4)
 //
@@ -395,6 +446,7 @@ typedef union {
         ULONG Reserved7 : 3;           // bit 29:31
     };
 } SAI_RECEIVE_CONFIGURATION_REGISTER_4, *PSAI_RECEIVE_CONFIGURATION_REGISTER_4;
+#endif
 
 //
 // IMX7D: 13.8.4.15 SAI Receive Configuration 5 Register (I2Sx_RCR5)
@@ -422,6 +474,21 @@ typedef union {
     };
 } SAI_RECEIVE_DATA_REGISTER, *PSAI_RECEIVE_DATA_REGISTER;
 
+#ifdef _ARM64_
+//
+// IMX8M: 13.10.4.1.20.3 SAI Receive FIFO Register (I2Sx_RFRn)
+//
+typedef union {
+    ULONG AsUlong;
+    struct {
+        ULONG ReadFifoPointer : 8;  // bit 0:7
+        ULONG Reserved0 : 7;        // bit 8:14
+        ULONG ReceiveChannelPointer : 1; // bit 15
+        ULONG WriteFifoPointer : 8; // bit 16:23
+        ULONG Reserved2 : 8;        // bit 24:31
+    };
+} SAI_RECEIVE_FIFO_REGISTER, *PSAI_RECEIVE_FIFO_REGISTER;
+#else
 //
 // IMX7D: 13.8.4.17 SAI Receive FIFO Register (I2Sx_RFRn)
 //
@@ -436,6 +503,7 @@ typedef union {
 
     };
 } SAI_RECEIVE_FIFO_REGISTER, *PSAI_RECEIVE_FIFO_REGISTER;
+#endif
 
 //
 // IMX7D: 13.8.4.18 SAI Receive Mask Register (I2Sx_RMR)
