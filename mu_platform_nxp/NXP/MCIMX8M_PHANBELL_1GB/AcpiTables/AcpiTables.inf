@@ -62,6 +62,7 @@
 
   giMXPlatformTokenSpaceGuid.PcdGlobalDataBaseAddress
   giMXPlatformTokenSpaceGuid.PcdKdUartInstance
+  giMX8TokenSpaceGuid.PcdKdUsbInstance
 
   gOpteeClientPkgTokenSpaceGuid.PcdTrustZoneSharedMemoryBase
   gOpteeClientPkgTokenSpaceGuid.PcdTrustZoneSharedMemorySize
@@ -74,3 +75,6 @@
   giMX8TokenSpaceGuid.PcdPcie2Enable
   giMX8TokenSpaceGuid.PcdPcie2DeviceConfigBase
   giMX8TokenSpaceGuid.PcdPcie2ControlBaseAddress
+
+  giMX8TokenSpaceGuid.PcdUsb1XhciBaseAddress
+  giMX8TokenSpaceGuid.PcdUsb2XhciBaseAddress

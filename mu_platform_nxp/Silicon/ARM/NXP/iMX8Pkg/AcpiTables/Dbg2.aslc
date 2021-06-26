@@ -41,8 +41,21 @@
 #define KD_UART_ACPI_PATH                 "\\_SB.UAR4"
 #endif
 
+#define KD_USB_ADDRESS_SIZE              0x00100000
 
+#if defined(CPU_IMX8MQ)
+#define DBG2_NUM_DEBUG_PORTS                       2
+#if FixedPcdGet32(PcdKdUsbInstance) == 1
+#define KD_USB_BASE_ADDR                 FixedPcdGet32(PcdUsb1XhciBaseAddress) // iMX8 0x38100000
+#define KD_USB_ACPI_PATH                 "\\_SB.USB1"
+#elif FixedPcdGet32(PcdKdUsbInstance) == 2
+#define KD_USB_BASE_ADDR                 FixedPcdGet32(PcdUsb2XhciBaseAddress) // iMX8 0x38200000
+#define KD_USB_ACPI_PATH                 "\\_SB.USB2"
+#endif
+#elif defined(CPU_IMX8MM)
 #define DBG2_NUM_DEBUG_PORTS                       1
+#endif
+
 #define DBG2_NUMBER_OF_GENERIC_ADDRESS_REGISTERS   1
 #define DBG2_NAMESPACESTRING_FIELD_SIZE            sizeof(KD_UART_ACPI_PATH)
 
@@ -58,7 +71,7 @@ typedef struct {
   DBG2_DEBUG_DEVICE_INFORMATION                 Dbg2DeviceInfo[DBG2_NUM_DEBUG_PORTS];
 } DBG2_TABLE;
 
-#define DBG2_DEBUG_PORT_DDI(NumReg, SubType, UartBase, UartAddrLen, UartNameStr) {                                    \
+#define DBG2_DEBUG_PORT_DDI(NumReg, Type, SubType, AddrBase, AddrLen, NameStr) {                                      \
     {                                                                                                                 \
       EFI_ACPI_DBG2_DEBUG_DEVICE_INFORMATION_STRUCT_REVISION,         /* UINT8     Revision */                        \
       sizeof (DBG2_DEBUG_DEVICE_INFORMATION),                         /* UINT16    Length */                          \
@@ -67,15 +80,15 @@ typedef struct {
       OFFSET_OF (DBG2_DEBUG_DEVICE_INFORMATION, NameSpaceString),     /* UINT16    NameSpaceStringOffset */           \
       0,                                                              /* UINT16    OemDataLength */                   \
       0,                                                              /* UINT16    OemDataOffset */                   \
-      EFI_ACPI_DBG2_PORT_TYPE_SERIAL,                                 /* UINT16    Port Type */                       \
+      Type,                                                           /* UINT16    Port Type */                       \
       SubType,                                                        /* UINT16    Port Subtype */                    \
       {EFI_ACPI_RESERVED_BYTE, EFI_ACPI_RESERVED_BYTE},               /* UINT8     Reserved[2] */                     \
       OFFSET_OF (DBG2_DEBUG_DEVICE_INFORMATION, BaseAddressRegister), /* UINT16    BaseAddressRegister Offset */      \
       OFFSET_OF (DBG2_DEBUG_DEVICE_INFORMATION, AddressSize)          /* UINT16    AddressSize Offset */              \
     },                                                                                                                \
-    ARM_GAS32 (UartBase),                            /* EFI_ACPI_5_1_GENERIC_ADDRESS_STRUCTURE BaseAddressRegister */ \
-    UartAddrLen,                                     /* UINT32  AddressSize */                                        \
-    UartNameStr                                      /* UINT8   NameSpaceString[DBG2_NAMESPACESTRING_FIELD_SIZE] */   \
+    ARM_GAS32 (AddrBase),                            /* EFI_ACPI_5_1_GENERIC_ADDRESS_STRUCTURE BaseAddressRegister */ \
+    AddrLen,                                         /* UINT32  AddressSize */                                        \
+    NameStr                                          /* UINT8   NameSpaceString[DBG2_NAMESPACESTRING_FIELD_SIZE] */   \
   }
 
 STATIC DBG2_TABLE Dbg2 = {
@@ -91,10 +104,19 @@ STATIC DBG2_TABLE Dbg2 = {
      * Kernel Debug Port
      */
     DBG2_DEBUG_PORT_DDI (DBG2_NUMBER_OF_GENERIC_ADDRESS_REGISTERS,
+                          EFI_ACPI_DBG2_PORT_TYPE_SERIAL,
                           IMX_SERIAL_DBG_PORT_SUBTYPE,
                           KD_UART_BASE_ADDR,
                           UART_IMX8_UART_ADDRESS_SIZE,
                           KD_UART_ACPI_PATH),
+#if defined(CPU_IMX8MQ)
+    DBG2_DEBUG_PORT_DDI (DBG2_NUMBER_OF_GENERIC_ADDRESS_REGISTERS,
+                          EFI_ACPI_DBG2_PORT_TYPE_USB,
+                          EFI_ACPI_DBG2_PORT_SUBTYPE_USB_XHCI,
+                          KD_USB_BASE_ADDR,
+                          KD_USB_ADDRESS_SIZE,
+                          KD_USB_ACPI_PATH),
+#endif
   }
 };
 
